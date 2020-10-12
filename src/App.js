@@ -1,11 +1,9 @@
 import React from 'react';
 import './App.css';
-import Main from './components/main';
+import Index from './components/landingpage/index';
 
 function App() {
-  return (
-    <Main />
-  );
+	return <Index />;
 }
 
 export default App;
