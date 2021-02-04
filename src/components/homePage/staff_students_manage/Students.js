@@ -3,6 +3,8 @@ import { Card} from "antd";
 import { Tabs } from 'antd';
 import './students.css'
 import StudentsTable from './StudentsTable';
+import TrackingReport from './TrackingReport';
+
 const { TabPane } = Tabs;
 
 const Students = () => {
@@ -36,17 +38,8 @@ const Students = () => {
                     <TabPane tab="Students" key="1" style={styleTabPane}>
                         <StudentsTable />   
                     </TabPane>
-                    <TabPane tab="Tracking Report" key="2">
-                        <p>Content of Tab Pane 2</p>
-                        <p>Content of Tab Pane 2</p>
-                        <p>Content of Tab Pane 2</p> 
-                        <p>Content of Tab Pane 2</p>
-                        <p>Content of Tab Pane 2</p>
-                        <p>Content of Tab Pane 2</p> 
-                        <p>Content of Tab Pane 2</p>
-                        <p>Content of Tab Pane 2</p>
-                        <p>Content of Tab Pane 2</p> 
-                        <p>Content of Tab Pane 2</p>
+                    <TabPane tab="Tracking Report" key="2" style={styleTabPane}>
+                     <TrackingReport />
                     </TabPane>
                 </Tabs>
             </div>

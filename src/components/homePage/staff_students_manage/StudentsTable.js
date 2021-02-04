@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Table,  Input, Button,  Menu, Dropdown, Row, Col, Modal, Checkbox} from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { Table,  Input, Button,  Menu,  Row, Col, Checkbox} from 'antd';
 import styled from "styled-components";
 import ModalStudent from './AddStudentModal'
 import ActionButton from './ActionButton'
@@ -50,13 +49,13 @@ const DropDownStyle = styled.div`
 // Search
 const { Search } = Input;
 
-const onSearch = value => console.log(value);
-
 const StudentsTable = () => {
 
   const [selectedStudents, setSelectedStudents] = useState([]);
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
+  const [ temporarySearch, setTemporarySearch ] = useState("");
+  const [ currentStudents, setCurrentStudents ] = useState([]);
   // const [student, setStudent] = useState({});
 
   //true when new student added
@@ -65,6 +64,20 @@ const StudentsTable = () => {
   const [studentEdited, setStudentEdited] = useState(false);
 
   console.log(studentAdded);
+
+
+  const onSearch = (event) => {
+    
+    const name = event.toLowerCase();
+    console.log(name);
+    setTemporarySearch(event);
+    setCurrentStudents(students.filter((student) =>  {
+      const firstName = student.first_name.toLowerCase();
+      const lastName = student.last_name.toLowerCase();
+      const fullName = `${firstName} ${lastName}`;
+      return firstName.includes(name) || lastName.includes(name) || fullName.includes(name);
+    }));
+  };
 
   useEffect(() => {
     getStudents();
@@ -83,6 +96,7 @@ const StudentsTable = () => {
       data => {
         console.log(data);
         setStudents(data);
+        setCurrentStudents(data);
         setStudentAdded(false);
         setStudentEdited(false);
       }
@@ -147,7 +161,7 @@ const StudentsTable = () => {
   }
 
   const data = [];
-  students.map( student => (
+  currentStudents.map( student => (
     data.push({
       key: student.student_id,
       id: student.student_id,
@@ -155,6 +169,14 @@ const StudentsTable = () => {
       email: student.user.email,
       course: student.student_course.course.course_name,
     })
+  // students.map( student => (
+  //   data.push({
+  //     key: student.student_id,
+  //     id: student.student_id,
+  //     name: student.first_name + ' ' + student.last_name,
+  //     email: student.user.email,
+  //     course: student.student_course.course.course_name,
+  //   })
   ))
   
 
@@ -184,8 +206,29 @@ const StudentsTable = () => {
             placeholder="Search"
             allowClear
             onSearch={onSearch}
+            enterButton
             style={{ width: 200 }}
           />
+           {
+              temporarySearch && (
+                <div>
+                  <br/>
+                  <p>
+                    { temporarySearch }&nbsp;
+                    <Button 
+                      type="danger" 
+                      shape="circle"
+                      onClick={ () => {
+                        setTemporarySearch("") 
+                        setCurrentStudents(students);
+                      }}
+                    >
+                      x
+                    </Button>
+                  </p>         
+                </div>
+              )
+            }
         </HeaderStyle>
               
         </Col>
