@@ -61,7 +61,7 @@ const StudentsTable = () => {
   //true when new student added
   const [studentAdded, setStudentAdded] = useState(false);
   //true when existing student was edit
-  const [studentEdited, setStudentEdited] = useState(false);
+  const [changedStudentInfo, setChangedStudentInfo] = useState(false);
 
   console.log(studentAdded);
 
@@ -82,7 +82,7 @@ const StudentsTable = () => {
   useEffect(() => {
     getStudents();
     getCourses();
-  }, [studentAdded, studentEdited])
+  }, [studentAdded, changedStudentInfo])
 
   const getStudents = () => {
     fetch('https://forked-student-dashboard.herokuapp.com/students', {
@@ -98,7 +98,7 @@ const StudentsTable = () => {
         setStudents(data);
         setCurrentStudents(data);
         setStudentAdded(false);
-        setStudentEdited(false);
+        setChangedStudentInfo(false);
       }
     )
     .catch(err => console.error(err));
@@ -114,8 +114,8 @@ const StudentsTable = () => {
     .then(response => response.json())
     .then(
       data => {
-        console.log(data.courses);
-        setCourses(data.courses)
+        console.log(data);
+        setCourses(data)
       }
     )
     .catch(err => console.error(err));
@@ -145,20 +145,20 @@ const StudentsTable = () => {
     },
   ];
   // Dropdawn menu
-  const menu = (
-    <Menu>
-      {courses.map( course => (
-          <Menu.Item key={course.id} >
-            <Checkbox onChange={onChange}>{course.course_name}</Checkbox>
-          </Menu.Item>
-      ))
-      }
-    </Menu>
-  );
+  // const menu = (
+  //   <Menu>
+  //     {courses.map( course => (
+  //         <Menu.Item key={course.id} >
+  //           <Checkbox onChange={onChange}>{course.course_name}</Checkbox>
+  //         </Menu.Item>
+  //     ))
+  //     }
+  //   </Menu>
+  // );
 
-  function onChange(e) {
-    console.log(`checked = ${e.target.checked}`);
-  }
+  // function onChange(e) {
+  //   console.log(`checked = ${e.target.checked}`);
+  // }
 
   const data = [];
   currentStudents.map( student => (
@@ -250,7 +250,7 @@ const StudentsTable = () => {
               students={students} 
               selectedStudents={selectedStudents} 
               courses={courses} 
-              setStudentEdited={setStudentEdited}
+              setChangedStudentInfo={setChangedStudentInfo}
             />
           </DropDownStyle>
         </Col>

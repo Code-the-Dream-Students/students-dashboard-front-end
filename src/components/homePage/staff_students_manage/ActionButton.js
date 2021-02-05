@@ -1,12 +1,19 @@
-import React, {useState, useEffect} from "react";
+// import React, {useState, useEffect} from "react";
+import React, { useState, useContext } from "react";
 import { Table, Form, Input, Button,  Menu, Dropdown, Row, Col, Modal, Checkbox} from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import styled from "styled-components";
+// import styled from "styled-components";
+import UserContext from "../../contexts/UserContext";
 
 
-const ActionButton = ({students, selectedStudents, courses, setStudentEdited}) => {
+const ActionButton = ({students, selectedStudents, courses, setChangedStudentInfo}) => {
+
+    const [authToken, setAuthToken] = useContext(UserContext);
+
+    console.log(authToken)
 
     const initialStudent = {
+
         name: '',
         email: '',
         id: '',
@@ -171,21 +178,23 @@ const ActionButton = ({students, selectedStudents, courses, setStudentEdited}) =
         var email= studentInfo.email;
         console.log(email);
 
-        fetch(`https://forked-student-dashboard.herokuapp.com/students/${studentInfo.id}`, {
+        fetch(`https://forked-student-dashboard.herokuapp.com/students/staff_update`, {
             method: 'PUT',
             mode: 'cors',
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization':authToken },
             body: JSON.stringify({
+                student_id: studentInfo.id,
                 first_name: first_name,
                 last_name: last_name,
-                enrolled: studentInfo.enrolled,
+                email: email,
+                // enrolled: studentInfo.enrolled,
             }) 
         })
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            setStudentEdited(true);
+            setChangedStudentInfo(true);
             //cleans input fields 
             studentInfo(initialStudent);
         })
@@ -194,31 +203,31 @@ const ActionButton = ({students, selectedStudents, courses, setStudentEdited}) =
     const handleEditCancel = () => {
         setIsEditVisible(false);
     };
-
+    console.log(studentInfo);
     //move
     function handleMove(e) {
         setIsMoveVisible(true);
+        getStudentInfo();
     }
     const handleMoveOk = () => {
         setIsMoveVisible(false);
-        getStudentInfo();
-
-        fetch(` https://forked-student-dashboard.herokuapp.com/student_courses/create`, {
-            method: 'PUT',
+        console.log(selectedMenuItem)
+        fetch(`https://forked-student-dashboard.herokuapp.com/student_courses/${studentInfo.id}/update`, {
+            method: 'PATCH',
             mode: 'cors',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                student_id: studentInfo.id,
-                course_id: studentInfo.course_id,
+                // student_id: studentInfo.id,
+                course_id: selectedMenuItem
             }) 
         })
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            setStudentEdited(true);
+            setChangedStudentInfo(true);
             //cleans input fields 
-            studentInfo(initialStudent);
+            setStudentInfo(initialStudent);
             //makes all checkbox unchecked
             setSelectedMenuItem('');
         })
@@ -234,9 +243,31 @@ const ActionButton = ({students, selectedStudents, courses, setStudentEdited}) =
     //delete
     function handleDelete(e) {
         setIsDeleteVisible(true);
+        getStudentInfo();
     }
     const handleDeleteOk = () => {
         setIsDeleteVisible(false);
+
+        setIsMoveVisible(false);
+        console.log(studentInfo.course_id)
+        fetch(`https://forked-student-dashboard.herokuapp.com/student_courses/${studentInfo.id}/delete`, {
+            method: 'DELETE',
+            mode: 'cors',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                // student_id: studentInfo.id,
+                course_id: studentInfo.course_id,
+            }) 
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            setChangedStudentInfo(true);
+            //cleans input fields 
+            studentInfo(initialStudent);
+        })
+        .catch(err => console.error(err));
     };
     const handleDeleteCancel = () => {
         setIsDeleteVisible(false);
