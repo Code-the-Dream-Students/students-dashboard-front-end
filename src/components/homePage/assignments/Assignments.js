@@ -439,8 +439,8 @@ const Assignments = ({ match, history }) => {
                             {step !== -1 && step !== 3 ? (
                                 <Button
                                     id={index}
-                                    style={{ marginRight: "1rem" }}
                                     type="primary"
+                                    danger
                                     htmlType="submit"
                                     onClick={handleSubmit}
                                     disabled={

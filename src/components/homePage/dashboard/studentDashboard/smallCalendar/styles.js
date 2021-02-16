@@ -5,7 +5,7 @@ import styled from "styled-components";
 export const StyledDiv = styled.div`
     display: flex;
     flex-flow: column wrap;
-    max-width: 300px;
+    max-width: 100%;
     font-size: 8px;
     border: 1px solid #f0f0f0;
     border-radius: 2px;
@@ -30,12 +30,12 @@ export const StyledDiv = styled.div`
     }
 `;
 export const StyledLegend = styled.div`
-    margin-left: 15px;
+    margin-left: 0px;
     width: 100%;
     .ant-card .ant-card-bordered {
         width: 100%;
     }
-    @media only screen and (max-width: 880px) {
+    @media only screen and (max-width: 990px) {
         margin-left: 0;
         margin-top: 20px;
         .ant-card .ant-card-bordered {

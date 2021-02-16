@@ -1,20 +1,16 @@
+/** @format */
+
 import styled from "styled-components";
 
 export const StyledAvatar = styled.div`
-.avatar-uploader > .ant-upload {
-    width: 128px;
-    height: 128px;
-  }
-  `;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .ant-upload-picture-card-wrapper .avatar-uploader {
+    }
+`;
 
-  export const StyledAccount = styled.div`
-
-  
-  `;
-
-  export const StyledPass = styled.div`
-  .ant-form-item-control-input-content {
-   margin-left: 30px;
-  
-  }
-  `;
+export const StyledPass = styled.div`
+    .ant-form-item-control-input-content {
+    }
+`;

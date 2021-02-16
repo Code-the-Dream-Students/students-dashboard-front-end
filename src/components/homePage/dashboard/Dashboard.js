@@ -4,7 +4,7 @@ import SignUpMentor from "./studentDashboard/signUpMentor/signUpMentor";
 import EventsStaffButton from "./staffDashboard/eventsButton/eventsStaffButton";
 import EventsButton from "./studentDashboard/eventsButton/eventsButton";
 import MeetingButton from "./studentDashboard/meetingButton/meetingButton";
-import { Row, Col, Space } from "antd";
+import { Row, Col } from "antd";
 import UserContext from "../../contexts/UserContext";
 import Progress from "./studentDashboard/progress/MainProgress";
 import GetHelp from "./studentDashboard/getHelp/GetHelp";
@@ -94,10 +94,10 @@ const Dashboard = ({ history, menuKey, selectedKey, setSelectedKey, match }) => 
         <div className="container-fluid">
             <Row gutter={[16, 24]}>
                 <Col xs={24} sm={24} md={24} lg={14} xl={16} xxl={18}>
-                    <Space direction="vertical">{displayDashboardContent()}</Space>
+                    {displayDashboardContent()}
                 </Col>
                 <Col xs={24} sm={24} md={24} lg={10} xl={8} xxl={6}>
-                    <Space direction="vertical">{displayRightSideContent()}</Space>
+                    {displayRightSideContent()}
                 </Col>
             </Row>
         </div>

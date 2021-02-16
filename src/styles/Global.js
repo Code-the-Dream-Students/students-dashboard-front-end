@@ -28,6 +28,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     background: var(--white);
+    height:100vh;
   }
  .container-fluid {
   margin: 0;
@@ -43,7 +44,9 @@ const GlobalStyles = createGlobalStyle`
  }
 .site-layout-right, .center{ 
   display: var(--display);
-      justify-content:var(--center);
+      justify-content:flex-start;
+      flex-flow:column;
+      align-items:var(--center);
  }
  .ctd-logo{ 
   width: 170px;
@@ -89,6 +92,7 @@ p {
  .ant-card {
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 border-radius: 6px;
+margin:15px 0 0 0;
     }
 
     .ant-layout-footer {

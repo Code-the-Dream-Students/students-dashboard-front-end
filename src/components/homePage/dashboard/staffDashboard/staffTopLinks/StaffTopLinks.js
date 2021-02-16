@@ -8,84 +8,101 @@ import * as ROUTES from "../../../../../constants/routes";
 import { Link } from "react-router-dom";
 
 const StaffTopLinks = ({ match }) => {
+    const Container = styled.div`
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media only screen and (max-width: 996px) {
+            display: flex;
+            flex-flow: column;
+        }
+    `;
     const ButtonOne = styled.button`
         width: 100%;
-        height: 103px;
+        height: 160px;
         border-style: none;
         background: #c8e4ff;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 6px;
         cursor: pointer;
         outline: none;
-        margin: 5px;
+        color: black;
+        padding: 25px;
+        margin: 15px;
+        a {
+            color: black;
+        }
     `;
 
     const ButtonTwo = styled.button`
         width: 100%;
-        height: 103px;
+        height: 160px;
         border-style: none;
         background: #ffd95e;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 6px;
         cursor: pointer;
         outline: none;
-        margin: 5px;
+        a {
+            color: black;
+        }
+        padding: 25px;
+        margin: 15px;
     `;
 
     const ButtonThree = styled.button`
         width: 100%;
-        height: 103px;
+        height: 160px;
         border-style: none;
         background: #1890ff;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 6px;
         cursor: pointer;
         outline: none;
-        margin: 5px;
         color: white;
+        padding: 25px;
+        margin: 15px;
+        a {
+            color: white;
+        }
     `;
 
     return (
         <>
             <Card type="inner" hoverable className="cards-border">
-                <Row>
-                    <Col xs={24} xl={8}>
+                <Container>
+                    <ButtonOne>
                         <Link to={`${match.path}${ROUTES.STUDENTS}`}>
-                            <ButtonOne>
-                                <h3>
-                                    <strong>
-                                        <TeamOutlined /> Students
-                                    </strong>
-                                </h3>
-                                Manage & Tracking Report
-                            </ButtonOne>
-                        </Link>
-                    </Col>
-
-                    <Col xs={24} xl={8}>
-                        <Link to={`${match.path}${ROUTES.ADD_MENTORS}`}>
-                            <ButtonTwo>
-                                <h3>
-                                    {" "}
-                                    <strong>
-                                        <UserOutlined /> Mentors
-                                    </strong>
-                                </h3>
-                                Manage & Tracking Report
-                            </ButtonTwo>
-                        </Link>
-                    </Col>
-                    <Col xs={24} xl={8}>
-                        <ButtonThree>
                             <h3>
-                                <strong style={{ color: "#fff" }}>
-                                    <UnlockOutlined /> Staff Admin
+                                <strong>
+                                    <TeamOutlined /> Students
                                 </strong>
                             </h3>
-                            Manage & Authorization
-                        </ButtonThree>
-                    </Col>
-                </Row>
+                            Manage & Tracking Report
+                        </Link>
+                    </ButtonOne>
+                    <ButtonTwo>
+                        <Link to={`${match.path}${ROUTES.ADD_MENTORS}`}>
+                            <h3>
+                                {" "}
+                                <strong>
+                                    <UserOutlined /> Mentors
+                                </strong>
+                            </h3>
+                            Manage & Tracking Report
+                        </Link>
+                    </ButtonTwo>
+                    <ButtonThree>
+                        <h3>
+                            <strong style={{ color: "#fff" }}>
+                                <UnlockOutlined /> Staff Admin
+                            </strong>
+                        </h3>
+                        Manage & Authorization
+                    </ButtonThree>
+                </Container>
             </Card>
         </>
     );

@@ -17,6 +17,7 @@ export const StyledDiv = styled.div`
         align-items: center;
         background-color: #12284c;
         border: 1px solid #f1f1f2;
+         margin-bottom:15px 0 0 0;
         a{
             color: #12284c;
         }

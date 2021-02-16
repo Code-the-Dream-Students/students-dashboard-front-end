@@ -11,6 +11,7 @@ const AnnouncementsButton = styled.div`
     display:flex;
     justify-content:center;
     align-items:flex-start;
+    
 }
 .announcements-display svg{
 margin-top:5px;
@@ -30,7 +31,7 @@ margin-top:5px;
         text-align: center;
         display: block;
         cursor: pointer;
-        margin-bottom: 10px;
+        margin: 15px 0;
         outline: none;
         border: 1px solid #fb5100;
         a {

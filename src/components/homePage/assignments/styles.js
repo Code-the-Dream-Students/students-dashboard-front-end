@@ -6,15 +6,23 @@ export const StyledSection = styled.section`
     background: #f5f5f5;
     overflow: hidden;
     padding: 24px;
+
     .courseOutline {
         margin: 2rem 0;
     }
     .cardContent {
         margin: 0px;
-        padding: 20px;
+        padding: 0 40px;
+    }
+    .ant-steps {
+        padding: 0 40px 6px 40px;
     }
     .card-container p {
-        margin-bottom: 10px;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+    .card-container li {
+        line-height: 1.5;
     }
     .card-container > .ant-steps-item-wait,
     .ant-steps-item-container,
@@ -27,11 +35,12 @@ export const StyledSection = styled.section`
         width: 1em;
     }
     .card-container > .ant-tabs-card .ant-tabs-content {
-        min-height: 77.8vh;
+        height: 90vh;
         margin-top: -16px;
     }
     .card-container > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
         background: #fff;
+
         padding: 16px;
     }
     .card-container > .ant-tabs-card > .ant-tabs-nav::before {
@@ -78,7 +87,7 @@ export const StyledSectionStaff = styled.section`
     background: #f5f5f5;
     overflow: hidden;
     padding: 24px;
-    border: 1px solid red;
+
     /* width: 800px; */
 
     .courseOutline {
@@ -103,7 +112,7 @@ export const StyledSectionStaff = styled.section`
         width: 1em;
     }
     .card-container > .ant-tabs-card .ant-tabs-content {
-        min-height: 70vh;
+        min-height: 100vh;
         margin-top: -16px;
     }
 
@@ -165,6 +174,10 @@ export const StyledDiv = styled.div`
         background: #ffffff;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 6px;
+        margin-right: 15px;
+        @media only screen and (max-width: 996px) {
+            margin-right: 0;
+        }
     }
 `;
 
@@ -172,9 +185,11 @@ export const StyledDivSummary = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 20px;
-
-    button {
+    width:100%;
+    @media only screen and (max-width: 996px) {
+         
+            justify-content: center;
+        }
     }
 `;
 export const StyledDivSummaryDashboard = styled.div`

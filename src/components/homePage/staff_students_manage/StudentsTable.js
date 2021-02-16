@@ -215,12 +215,12 @@ const StudentsTable = () => {
                         <Col span={24}>
                             <Table
                                 pagination={{ pageSize: 10 }}
-                                style={{ margin: "20px 10px" }}
+                                size="middle"
                                 rowSelection={rowSelection}
                                 columns={columns}
                                 dataSource={data}
                                 // scroll={{ x: 1000 }}
-                                scroll={{ y: 1000, x: 800 }}
+                                scroll={{ x: 800 }}
                                 // scroll={{ y: 1000}}
                             />
                         </Col>

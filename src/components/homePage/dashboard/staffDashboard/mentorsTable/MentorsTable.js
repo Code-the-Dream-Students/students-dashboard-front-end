@@ -176,27 +176,25 @@ const MentorsTable = () => {
     };
 
     return (
-        <Space direction="vertical">
-            <Card type="inner">
-                <PageHeader
-                    ghost={false}
-                    title="Mentors List"
-                    extra={[
-                        <Button
-                            onClick={handleAdd}
-                            key="2"
-                            type="primary"
-                            style={{ marginLeft: 160 }}>
-                            Add Mentor <PlusOutlined />
-                        </Button>,
-                        <Button key="1" type="primary">
-                            Track Mentors
-                            <FundOutlined />
-                        </Button>,
-                    ]}></PageHeader>
-                <Table bordered dataSource={mentors} columns={columns} />
-            </Card>
-        </Space>
+        <Card type="inner">
+            <PageHeader
+                ghost={false}
+                title="Mentors List"
+                extra={[
+                    <Button
+                        onClick={handleAdd}
+                        key="2"
+                        type="primary"
+                        style={{ marginLeft: 160 }}>
+                        Add Mentor <PlusOutlined />
+                    </Button>,
+                    <Button key="1" type="primary">
+                        Track Mentors
+                        <FundOutlined />
+                    </Button>,
+                ]}></PageHeader>
+            <Table bordered dataSource={mentors} columns={columns} />
+        </Card>
     );
 };
 export default MentorsTable;

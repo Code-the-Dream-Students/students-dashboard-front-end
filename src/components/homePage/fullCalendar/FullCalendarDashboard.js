@@ -215,10 +215,8 @@ const FullCalendarDashboard = ({ menuKey, setSelectedKey }) => {
                         </div>
                     </div>
                 </Col>
-                <Col>
-                    <Space direction="vertical ">
-                        <CalLegends />
-                    </Space>
+                <Col xs={24} sm={24} md={16} lg={8} xl={6} xxl={6}>
+                    <CalLegends />
                 </Col>
             </Row>
         </div>

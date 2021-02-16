@@ -16,26 +16,16 @@ const ProfilePage = ({ history }) => {
         <div>
             <Row gutter={[16, 24]}>
                 <Col xs={24} sm={24} md={24} lg={14} xl={16} xxl={18}>
-                    <Space direction="vertical">
-                        <AO3 />
-                        <ChangePass />
-                    </Space>
+                    <AO3 />
+                    <ChangePass />
                 </Col>
-                <Col
-                    xs={24}
-                    sm={24}
-                    md={24}
-                    lg={10}
-                    xl={8}
-                    xxl={6}
-                    className="site-layout-right">
-                    <Space direction="vertical">
-                        <Announcements />
-                        <EventsButton />
-                        <MeetingButton />
-                        <TodoList />
-                        <SmallCalendar history={history} />
-                    </Space>
+
+                <Col xs={24} sm={24} md={24} lg={10} xl={8} xxl={6}>
+                    <Announcements />
+                    <EventsButton />
+                    <MeetingButton />
+                    <TodoList />
+                    <SmallCalendar history={history} />
                 </Col>
             </Row>
         </div>

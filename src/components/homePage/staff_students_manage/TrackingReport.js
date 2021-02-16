@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, Row, Col, Typography, Input, Button, Spin } from "antd";
 import styled from "styled-components";
-
+import "./students.css";
 const { Text } = Typography;
 const { Search } = Input;
 
@@ -28,6 +28,7 @@ const TrackingReport = () => {
         width: 20px;
         background-color: ${(props) => props.squareColor};
         bordercolor: #f00;
+        margin: 0 auto;
     `;
 
     const SquareDescription = styled.p`
