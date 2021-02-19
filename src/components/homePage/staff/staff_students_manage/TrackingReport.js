@@ -118,6 +118,7 @@ const TrackingReport = () => {
 
     // console.log(students);
 
+
     const onSearch = (event) => {
         const name = event.toLowerCase();
         setTemporarySearch(event);
@@ -140,8 +141,8 @@ const TrackingReport = () => {
             return toProcess.assignmentProgress === 2
                 ? "#0f0"
                 : toProcess.assignmentProgress === 1
-                ? "#fc0"
-                : "#f00";
+                    ? "#fc0"
+                    : "#f00";
         }
 
         if (word === "weekStatus") {
@@ -149,8 +150,8 @@ const TrackingReport = () => {
             return toProcess.status === 6
                 ? "#0f0"
                 : toProcess.status >= 3
-                ? "#fc0"
-                : "#f00";
+                    ? "#fc0"
+                    : "#f00";
         }
 
         let studentWeeklyProgress =
@@ -160,14 +161,14 @@ const TrackingReport = () => {
                     (word === "generalAssignments"
                         ? progress.assignment_progress
                         : word === "generalGithubLinks"
-                        ? progress.assignment_submission
-                        : word === "generalStatus"
-                        ? progress.total_progress
-                        : word === "unitAssignments"
-                        ? progress.assignment_progress
-                        : word === "unitGithubLinks"
-                        ? progress.githubLink
-                        : progress.status)
+                            ? progress.assignment_submission
+                            : word === "generalStatus"
+                                ? progress.total_progress
+                                : word === "unitAssignments"
+                                    ? progress.assignment_progress
+                                    : word === "unitGithubLinks"
+                                        ? progress.githubLink
+                                        : progress.status)
                 );
             }, 0) / toProcess.length;
 
@@ -176,20 +177,20 @@ const TrackingReport = () => {
             return studentWeeklyProgress === 2
                 ? "#0f0"
                 : studentWeeklyProgress === 1
-                ? "#fc0"
-                : "#f00";
+                    ? "#fc0"
+                    : "#f00";
         } else if (word === "generalStatus" || word === "unitStatus") {
             return studentWeeklyProgress === 6
                 ? "#0f0"
                 : studentWeeklyProgress >= 3
-                ? "#fc0"
-                : "#f00";
+                    ? "#fc0"
+                    : "#f00";
         } else {
             return studentWeeklyProgress >= 2
                 ? "#0f0"
                 : studentWeeklyProgress > 0
-                ? "#fc0"
-                : "#f00";
+                    ? "#fc0"
+                    : "#f00";
         }
     };
 
@@ -262,7 +263,7 @@ const TrackingReport = () => {
                                     )}
                                 />
                             ),
-                            githubLink: <a href={ `https://${weekData.githubLink}` }>{ weekData.githubLink }</a>,
+                            githubLink: <a href={`https://${weekData.githubLink}`}>{weekData.githubLink}</a>,
                             status: (
                                 <Square
                                     squareColor={setColor(weekData, "weekStatus")}
@@ -368,9 +369,8 @@ const TrackingReport = () => {
                             <Col xs={24} sm={12} md={12} lg={12}>
                                 <StyledDate>
                                     <Text strong>Date: </Text>
-                                    <Text>{`${
-                                        rightNow.getMonth() + 1
-                                    }/${rightNow.getDate()}/${rightNow.getFullYear()}`}</Text>
+                                    <Text>{`${rightNow.getMonth() + 1
+                                        }/${rightNow.getDate()}/${rightNow.getFullYear()}`}</Text>
                                 </StyledDate>
                             </Col>
                         </Row>
@@ -396,20 +396,20 @@ const TrackingReport = () => {
                         // onChange={handleChange}
                         scroll={{ y: 500 }}
                         expandIconColumnIndex={2}
-                        // pagination={{ pageSize: 5 }}
-                        // expandable={{
-                        //   expandedRowRender: () => <p style={{ margin: 0 }}>Hello</p>,
-                        //   rowExpandable: record => record.name !== 'Not Expandable',
-                        // }}
+                    // pagination={{ pageSize: 5 }}
+                    // expandable={{
+                    //   expandedRowRender: () => <p style={{ margin: 0 }}>Hello</p>,
+                    //   rowExpandable: record => record.name !== 'Not Expandable',
+                    // }}
                     />
                 </DivMargin>
             ) : (
-                <Row>
-                    <Col span={12} offset={12}>
-                        <Spin size="large" />
-                    </Col>
-                </Row>
-            )}
+                    <Row>
+                        <Col span={12} offset={12}>
+                            <Spin size="large" />
+                        </Col>
+                    </Row>
+                )}
         </>
     );
 };

@@ -27,7 +27,7 @@ export const StyledSection = styled.section`
         width: 1em;
     }
     .card-container > .ant-tabs-card .ant-tabs-content {
-        min-height: 77.8vh;
+        min-height: 100vh;
         margin-top: -16px;
     }
     .card-container > .ant-tabs-card .ant-tabs-content > .ant-tabs-tabpane {
@@ -103,7 +103,7 @@ export const StyledSectionStaff = styled.section`
         width: 1em;
     }
     .card-container > .ant-tabs-card .ant-tabs-content {
-        min-height: 70vh;
+        min-height: 100vh;
         margin-top: -16px;
     }
 
@@ -159,7 +159,7 @@ export const StyledDiv = styled.div`
         border: none;
     }
     .ant-card-body {
-        min-height: 70vh;
+        min-height: 100vh;
     }
     .ant-card {
         background: #ffffff;

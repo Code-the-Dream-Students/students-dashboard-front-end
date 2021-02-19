@@ -1,11 +1,11 @@
 // import React, {useState, useEffect} from "react";
 import React, { useState, useContext } from "react";
-import { Table, Form, Input, Button,  Menu, Dropdown, Row, Col, Modal, Checkbox} from 'antd';
+import { Table, Form, Input, Button, Menu, Dropdown, Row, Col, Modal, Checkbox } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 // import styled from "styled-components";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../../contexts/UserContext";
 
-const ActionButton = ({students, selectedStudents, courses, setChangedStudentInfo}) => {
+const ActionButton = ({ students, selectedStudents, courses, setChangedStudentInfo }) => {
 
     const [authToken, setAuthToken] = useContext(UserContext);
 
@@ -33,23 +33,23 @@ const ActionButton = ({students, selectedStudents, courses, setChangedStudentInf
     const [checkedItem, setCheckedItem] = useState(checkedItemInitial);
 
     const layout = {
-        labelCol: { 
+        labelCol: {
             xs: { span: 4 },
             sm: { span: 4 },
         },
-        wrapperCol: { 
+        wrapperCol: {
             xs: { span: 24 },
-            sm: { span: 16 }, 
+            sm: { span: 16 },
         },
     };
-    
+
     const validateMessages = {
         required: '${label} is required!',
         types: {
             email: '${label} is not a valid email!',
             number: '${label} is not a valid number!',
         },
-            number: {
+        number: {
             range: '${label} must be between ${min} and ${max}',
         },
     };
@@ -65,27 +65,27 @@ const ActionButton = ({students, selectedStudents, courses, setChangedStudentInf
     // Dropdawn menu
     const menuEdit = (
         <Menu>
-        <Menu.Item key="0" onClick={handleAdd}>
-            Add to Course
+            <Menu.Item key="0" onClick={handleAdd}>
+                Add to Course
         </Menu.Item>
-        <Menu.Item key="1" onClick={handleEdit}>
-            Edit
+            <Menu.Item key="1" onClick={handleEdit}>
+                Edit
         </Menu.Item>
-        <Menu.Item key="2" onClick={handleMove}>
-            Move
+            <Menu.Item key="2" onClick={handleMove}>
+                Move
         </Menu.Item>
-        <Menu.Item key="3" onClick={handleDelete}>
-            Delete
+            <Menu.Item key="3" onClick={handleDelete}>
+                Delete
         </Menu.Item>
         </Menu>
     );
 
     // Dropdawn menu
     const menu = (
-        <Menu  onClick={(e) => setSelectedMenuItem(e.key)} >
-            {courses.map( course => (
+        <Menu onClick={(e) => setSelectedMenuItem(e.key)} >
+            {courses.map(course => (
                 <Menu.Item key={course.id} >
-                    <Checkbox 
+                    <Checkbox
                         checked={checkedItem[course.id]}
                         onChange={(e) => onChange(e, course.id)}
                     >
@@ -101,7 +101,7 @@ const ActionButton = ({students, selectedStudents, courses, setChangedStudentInf
     function onChange(e, id) {
         console.log(`checked = ${e.target.checked}`);
         console.log(`course_id= ${id}`);
-        var newArray = [ ... checkedItemInitial];
+        var newArray = [...checkedItemInitial];
         newArray[id] = e.target.checked;
         setCheckedItem(newArray);
     }
@@ -116,7 +116,7 @@ const ActionButton = ({students, selectedStudents, courses, setChangedStudentInf
     // }
 
     const getStudentInfo = () => {
-        students.map( student => {
+        students.map(student => {
             if (student.student_id === selectedStudents[0]) {
                 setStudentInfo({
                     name: student.first_name + ' ' + student.last_name,
@@ -167,35 +167,35 @@ const ActionButton = ({students, selectedStudents, courses, setChangedStudentInf
     const handleEditOk = () => {
         setIsEditVisible(false);
         //get changed first and last name
-        var first_name= studentInfo.name.split(' ', 1)[0];
-        var last_name= studentInfo.name.split(' ')[1];
+        var first_name = studentInfo.name.split(' ', 1)[0];
+        var last_name = studentInfo.name.split(' ')[1];
         console.log(first_name);
         console.log(last_name);
         //get changed Email
-        var email= studentInfo.email;
+        var email = studentInfo.email;
         console.log(email);
 
         fetch(`https://forked-student-dashboard.herokuapp.com/students/staff_update`, {
             method: 'PUT',
             mode: 'cors',
             credentials: 'include',
-            headers: { 'Content-Type': 'application/json', 'Authorization':authToken },
+            headers: { 'Content-Type': 'application/json', 'Authorization': authToken },
             body: JSON.stringify({
                 student_id: studentInfo.id,
                 first_name: first_name,
                 last_name: last_name,
                 email: email,
                 // enrolled: studentInfo.enrolled,
-            }) 
+            })
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            setChangedStudentInfo(true);
-            //cleans input fields 
-            studentInfo(initialStudent);
-        })
-        .catch(err => console.error(err));
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setChangedStudentInfo(true);
+                //cleans input fields 
+                studentInfo(initialStudent);
+            })
+            .catch(err => console.error(err));
     };
     const handleEditCancel = () => {
         setIsEditVisible(false);
@@ -217,18 +217,18 @@ const ActionButton = ({students, selectedStudents, courses, setChangedStudentInf
             body: JSON.stringify({
                 // student_id: studentInfo.id,
                 course_id: selectedMenuItem
-            }) 
+            })
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            setChangedStudentInfo(true);
-            //cleans input fields 
-            setStudentInfo(initialStudent);
-            //makes all checkbox unchecked
-            setSelectedMenuItem('');
-        })
-        .catch(err => console.error(err));
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setChangedStudentInfo(true);
+                //cleans input fields 
+                setStudentInfo(initialStudent);
+                //makes all checkbox unchecked
+                setSelectedMenuItem('');
+            })
+            .catch(err => console.error(err));
 
     };
     const handleMoveCancel = () => {
@@ -255,80 +255,80 @@ const ActionButton = ({students, selectedStudents, courses, setChangedStudentInf
             body: JSON.stringify({
                 // student_id: studentInfo.id,
                 course_id: studentInfo.course_id,
-            }) 
+            })
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            setChangedStudentInfo(true);
-            //cleans input fields 
-            studentInfo(initialStudent);
-        })
-        .catch(err => console.error(err));
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setChangedStudentInfo(true);
+                //cleans input fields 
+                studentInfo(initialStudent);
+            })
+            .catch(err => console.error(err));
     };
     const handleDeleteCancel = () => {
         setIsDeleteVisible(false);
     };
-    
-    return ( 
+
+    return (
         <>
             <Dropdown overlay={menuEdit} trigger={['click']} >
-                <Button type="primary" onClick={e => e.preventDefault()}> 
+                <Button type="primary" onClick={e => e.preventDefault()}>
                     Actions <DownOutlined />
-                </Button> 
+                </Button>
             </Dropdown>
-            
-            <Modal width={400} 
-                title="Add Student to Course" 
-                visible={isAddVisible} 
-                onOk={handleAddOk} 
-                onCancel={handleAddCancel} 
+
+            <Modal width={400}
+                title="Add Student to Course"
+                visible={isAddVisible}
+                onOk={handleAddOk}
+                onCancel={handleAddCancel}
                 okText='Add'
             >
                 <Row>
                     <Col>
                         <Dropdown overlay={menu} trigger={['click']} >
-                        <Button onClick={e => e.preventDefault()}> 
-                        Choose Course <DownOutlined />
-                        </Button> 
+                            <Button onClick={e => e.preventDefault()}>
+                                Choose Course <DownOutlined />
+                            </Button>
                         </Dropdown>
                     </Col>
                 </Row>
             </Modal>
-            
-            <Modal 
-                width={400} 
-                title="Move Student(s) from Course" 
-                visible={isMoveVisible} 
-                onOk={handleMoveOk} 
-                onCancel={handleMoveCancel} 
+
+            <Modal
+                width={400}
+                title="Move Student(s) from Course"
+                visible={isMoveVisible}
+                onOk={handleMoveOk}
+                onCancel={handleMoveCancel}
                 okText='Move'
             >
                 <Row>
                     <Col>
                         <Dropdown overlay={menu} trigger={['click']} >
-                        <Button onClick={e => e.preventDefault()}> 
-                        Choose Course <DownOutlined />
-                        </Button> 
+                            <Button onClick={e => e.preventDefault()}>
+                                Choose Course <DownOutlined />
+                            </Button>
                         </Dropdown>
                     </Col>
                 </Row>
             </Modal>
-​
-            <Modal 
+
+            <Modal
                 width={700}
-                title="Edit Student" 
-                visible={isEditVisible} 
-                onOk={handleEditOk} 
+                title="Edit Student"
+                visible={isEditVisible}
+                onOk={handleEditOk}
                 onCancel={handleEditCancel}
                 okText="Add"
                 cancelText="Cancel"
             >
-                <Form 
-                    {...layout} 
+                <Form
+                    {...layout}
                     // name="nest-messages" 
                     validateMessages={validateMessages}
-                    // onFinish={onFinish}
+                // onFinish={onFinish}
                 >
                     {/* <Form.Item style={{margin: '50px'}} rules={[{ required: true }]}>
                         <Dropdown overlay={menu} trigger={['click']} >
@@ -337,21 +337,21 @@ const ActionButton = ({students, selectedStudents, courses, setChangedStudentInf
                             </Button> 
                         </Dropdown>
                     </Form.Item> */}
-​
+
                     <Form.Item label="Name" rules={[{ required: true }]}>
-                        <Input value={studentInfo.name} onChange={e =>getFirstLastName(e)}/>
+                        <Input value={studentInfo.name} onChange={e => getFirstLastName(e)} />
                     </Form.Item>
                     <Form.Item label="Email" rules={[{ type: 'email' }]}>
-                        <Input value={studentInfo.email} onChange={e =>getEmail(e)}/>
+                        <Input value={studentInfo.email} onChange={e => getEmail(e)} />
                     </Form.Item>
                 </Form>
             </Modal>
-​
-            <Modal 
-                title="Delete Student(s)" 
-                visible={isDeleteVisible} 
-                onOk={handleDeleteOk} 
-                onCancel={handleDeleteCancel} 
+
+            <Modal
+                title="Delete Student(s)"
+                visible={isDeleteVisible}
+                onOk={handleDeleteOk}
+                onCancel={handleDeleteCancel}
                 okText='Remove'
             >
                 <p>Are you sure you want to remove this student from the class?</p>
