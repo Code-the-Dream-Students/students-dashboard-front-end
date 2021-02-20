@@ -1,18 +1,20 @@
-import React, { useState, useContext } from 'react';
-import { Button, Form, Input } from 'antd';
-import { UserOutlined, LockOutlined, AlignLeftOutlined } from '@ant-design/icons';
+/** @format */
 
-import * as ROUTES from '../../constants/routes';
-import ForgotPassword from './ForgotPassword';
-import UserContext from '../contexts/UserContext';
+import React, { useState, useContext } from "react";
+import { Button, Form, Input } from "antd";
+import { UserOutlined, LockOutlined, AlignLeftOutlined } from "@ant-design/icons";
+
+import * as ROUTES from "../../constants/routes";
+import ForgotPassword from "./ForgotPassword";
+import UserContext from "../contexts/UserContext";
 
 const Login = ({ history }) => {
-	const [loginState, setLoginState] = useState({ error: null, loading: null });
-	const { error, loading } = loginState;
-	const [authToken, setAuthToken] = useContext(UserContext);
+    const [loginState, setLoginState] = useState({ error: null, loading: null });
+    const { error, loading } = loginState;
+    const [authToken, setAuthToken] = useContext(UserContext);
 
 	const onFinish = async (values) => {
-		const { email } = values;
+		// const { email } = values;
 		try {
 			// Have loading symbol turned on
 			setLoginState({ loading: true });
@@ -35,45 +37,53 @@ const Login = ({ history }) => {
 		}
 	};
 
-	async function fetchData(values) {
-		try {
-			const response = await fetch('https://forked-student-dashboard.herokuapp.com/auth/login', {
-				method: 'POST',
-				mode: 'cors',
-				credentials: 'include',
-				body: JSON.stringify(values),
-				headers: { 'Content-Type': 'application/json' }
-			});
-			const message = await response.json();
-			const token = response.headers.get('authorization');
+    async function fetchData(values) {
+        try {
+            const response = await fetch(
+                "https://forked-student-dashboard.herokuapp.com/auth/login",
+                {
+                    method: "POST",
+                    mode: "cors",
+                    credentials: "include",
+                    body: JSON.stringify(values),
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
+            const message = await response.json();
+            const token = response.headers.get("authorization");
 
-			return { info: { ...message }, token };
-		} catch (e) {
-			console.log(e.message);
-		}
-	}
+            return { info: { ...message }, token };
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
 
-	return (
-		<div className=' col-4 contain'>
-			<h1>
-				Welcome to CTD's School
-				<span className='span-txt'>This website is your main hub for class materials for Code the Dream’s classes.</span>
-			</h1>
+    return (
+        <div className=" col-4 contain">
+            <h1>
+                Welcome to CTD's School
+                <span className="span-txt">
+                    This website is your main hub for class materials for Code the
+                    Dream’s classes.
+                </span>
+            </h1>
 
 			<div className='form'>
 				<h2>Sign In</h2>
 				{
-					authToken ?
+					authToken ? (
 						<div>
 							You are signed in
-				</div>
-						:
+						</div>
+					) : (
 						<div className='col-10 mx-auto'>
 							<Form
 								name='normal_login'
 								className='login-form'
 								initialValues={{
-									remember: true
+									remember: true,
+									email: "user2@gmail.com",
+									password: "123456"
 								}}
 								onFinish={onFinish}
 							>
@@ -90,7 +100,12 @@ const Login = ({ history }) => {
 									hasFeedback
 									validateStatus={loading ? 'validating' : null}
 								>
-									<Input prefix={<UserOutlined className='site-form-item-icon' />} placeholder='email' />
+									<Input 
+										prefix={<UserOutlined 
+										className='site-form-item-icon' />} 
+										placeholder='email' 
+										// defaultValue="user1@gmail.com"
+									/>
 								</Form.Item>
 								<Form.Item
 									name='password'
@@ -103,7 +118,12 @@ const Login = ({ history }) => {
 									hasFeedback
 									validateStatus={loading ? 'validating' : null}
 								>
-									<Input prefix={<LockOutlined className='site-form-item-icon' />} type='password' placeholder='password' />
+									<Input 
+										prefix={<LockOutlined className='site-form-item-icon' />} 
+										type='password' 
+										placeholder='password'
+										// defaultValue="123456"
+									/>
 								</Form.Item>
 								<Form.Item>
 									<div className='login-form-forgot'>
@@ -113,13 +133,15 @@ const Login = ({ history }) => {
 								<Form.Item>
 									<Button type='primary' htmlType='submit' className='login-form-button button-hover' id='validating'>
 										Login
-							</Button>
+									</Button>
 								</Form.Item>
 							</Form>
+							
 							<div align="center" style={{ color: "red" }}>
 								{loginState.error ? loginState.error : null}
 							</div>
 						</div>
+					)
 				}
 			</div>
 		</div>

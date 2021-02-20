@@ -1,1 +1,3 @@
-export const LOGIN_LINK = 'https://reqres.in/api/login';
+/** @format */
+
+export const LOGIN_LINK = "https://reqres.in/api/login";

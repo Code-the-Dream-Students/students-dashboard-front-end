@@ -53,3 +53,37 @@ strong {
     max-width: 1100px;
     margin: 0 auto;
 }
+
+.cal-orange {
+    background: #ffa500;
+    border: none;
+}
+.cal-green {
+    background: #7ed957;
+    border: none;
+}
+.cal-red {
+    background: #ff5757;
+    border: none;
+}
+.cal-purple {
+    background: #8c52ff;
+    border: none;
+}
+.cal-blue {
+    background: #38b6ff;
+    color: white;
+    border: none;
+}
+.cal-yellow {
+    background: #ffec4e;
+    border: none;
+}
+
+.fc-daygrid-dot-event .fc-event-title {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-weight: 700;
+}

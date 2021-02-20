@@ -29,6 +29,7 @@ const FooterBottom = styled.footer`
         padding-left: 0;
     }
 `;
+
 const Copyright = styled.div`
     display: flex;
     justify-content: flex-end;
@@ -42,6 +43,7 @@ const Copyright = styled.div`
         color: white;
     }
 `;
+
 const Icon = styled.div`
     display: flex;
     justify-content: space-between;
@@ -57,6 +59,7 @@ const Icon = styled.div`
         padding-top: 12px;
     }
 `;
+
 const FooterLinks = styled.a`
     display: flex;
     font-size: 20px;
@@ -66,6 +69,7 @@ const FooterLinks = styled.a`
         cursor: pointer;
     }
 `;
+
 const FooterPage = () => {
     return (
         <>
@@ -76,22 +80,26 @@ const FooterPage = () => {
                 <Icon>
                     <FooterLinks
                         href="https://www.codethedream.org/"
-                        target="_blank">
+                        target="_blank"
+                    >
                         <img src={ctd} alt="Code The Cream"></img>
                     </FooterLinks>
                     <FooterLinks
                         href="https://teamtreehouse.com/home"
-                        target="_blank">
+                        target="_blank"
+                    >
                         <img src={treehouse} alt="Team Treehouse"></img>
                     </FooterLinks>
                     <FooterLinks
                         href="https://app.slack.com/client/T07EHJ738/learning-slack"
-                        target="_blank">
+                        target="_blank"
+                    >
                         <SlackOutlined />
                     </FooterLinks>
                     <FooterLinks
                         href="https://github.com/Code-the-Dream-School?type=source"
-                        target="_blank">
+                        target="_blank"
+                    >
                         <GithubOutlined />
                     </FooterLinks>
                 </Icon>
@@ -99,4 +107,5 @@ const FooterPage = () => {
         </>
     );
 };
+
 export default FooterPage;

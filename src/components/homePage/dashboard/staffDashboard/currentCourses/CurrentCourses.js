@@ -1,163 +1,168 @@
-import React, { useState } from "react";
-import { Card, Row, Col, Space, Typography, Modal, Form, Input } from "antd";
+import React, { useState, useEffect } from "react";
+import { Card, Row, Col, Space, Typography, Modal, Form, Input, Button } from "antd";
 import styled from "styled-components";
 import { PlusCircleTwoTone } from "@ant-design/icons";
+import TextEditor from '../../../textEditor/TextEditor';
+import { useCookies } from "react-cookie";
+
 
 //Form Constants
-const layout = {
-  labelCol: { span: 6 },
-  wrapperCol: { span: 16 },
-};
+// const layout = {
+// 	labelCol: { span: 6 },
+// 	wrapperCol: { span: 16 },
+// };
 
-const validateMessages = {
-  required: "${label} is required!",
-};
+// const validateMessages = {
+// 	required: "${label} is required!",
+// };
 
 const CurrentCourses = () => {
-  
-  const TextBox = styled.div`
-    width: 200px;
-    height: 92.34px;
-    margin: 25px;
-    padding: 25px;
-    text-align: center;
-  `;
 
-  //Modal
-  const [isModalVisible, setIsModalVisible] = useState(false);
+	const TextBox = styled.div`
+		width: 200px;
+		height: 92.34px;
+		margin: 25px;
+		padding: 25px;
+		text-align: center;
+	`;
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
+	const [ isModalVisible, setIsModalVisible ] = useState(false);
+	const [ courses, setCourses ] = useState();
+	const [ courseName, setCourseName ] = useState("");
+	const [ courseDescription, setCourseDescription ] = useState("");
+	const [ cookies, setCookie ] = useCookies(['auth_token']);
+	const [ authToken, setAuthToken ] = useState(cookies['auth_token']);
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+	useEffect(() => {
+		fetch(process.env.REACT_APP_GET_STAFF_ASSIGNMENTS)
+		.then(response => response.json())
+		.then(setCourses)
+		.catch(console.error)
+	}, []);
 
-  //Modal Form
-  const onFinish = (values) => {
-    console.log(values);
-  };
+	const showModal = () => {
+		setIsModalVisible(true);
+	};
 
-  return (
-    <>
-      <Space direction="vertical">
-        <Card
-          type="inner"
-          hoverable
-          className="cards-border"
-          style={{ paddingTop: 10 }}
-        >
-          <Typography.Title level={4} className="left">
-            Current Courses
-            <PlusCircleTwoTone
-              style={{ paddingLeft: 420 }}
-              onClick={showModal}
-            />
-            <Modal
-              title="Create Course"
-              visible={isModalVisible}
-              onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <Form
-                {...layout}
-                name="nest-messages"
-                onFinish={onFinish}
-                validateMessages={validateMessages}
-              >
-                <Form.Item
-                  name={["user", "name"]}
-                  label="Class Name"
-                  rules={[{ required: true }]}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  name={["user", "introduction"]}
-                  label="Description"
-                  rules={[{ required: true }]}
-                >
-                  <Input.TextArea />
-                </Form.Item>
-              </Form>
-            </Modal>
-          </Typography.Title>
-          <br></br>
+	
+	const handleCancel = () => {
+		setIsModalVisible(false);
+	};
+	
+	// const handleOk = () => {
+	// 	setIsModalVisible(false);
+	// };
 
-          <Row gutter={[16, 16]}>
-            <Card
-              type="inner"
-              hoverable
-              className="cards-border"
-              style={{ margin: 3 }}
-            >
-              <Col span={12}>
-                <TextBox>
-                  <h3>
-                    <strong>Phoenix II</strong>
-                  </h3>
-                  Front End II
-                </TextBox>
-              </Col>
-            </Card>
+	//Modal Form
+	const handleOk = (event) => {
+		event.preventDefault();
+		fetch(process.env.REACT_APP_GET_STAFF_ASSIGNMENTS, {
+			method: "POST",
+			mode: "cors",
+			credentials: "include",
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": authToken
+			},
+			body: JSON.stringify({
+				course_name: courseName,
+				description: courseDescription
+			})
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			// window.location.reload();
+		})
+		.catch(console.error);
 
-            <Card
-              type="inner"
-              hoverable
-              className="cards-border"
-              style={{ margin: 3 }}
-            >
-              <Col span={12}>
-                <TextBox>
-                  <h3>
-                    <strong>Pirana II</strong>
-                  </h3>
-                  Back End II
-                </TextBox>
-              </Col>
-            </Card>
-          </Row>
+		console.log(courseName);
+		console.log(courseDescription);
+	};
 
-          <Row gutter={[16, 16]}>
-            <Card
-              type="inner"
-              hoverable
-              className="cards-border"
-              style={{ margin: 3 }}
-            >
-              <Col span={12}>
-                <TextBox>
-                  <h3>
-                    <strong>High Noon</strong>
-                  </h3>
-                  Full Stack
-                </TextBox>
-              </Col>
-            </Card>
-            <Card
-              type="inner"
-              hoverable
-              className="cards-border"
-              style={{ margin: 3 }}
-            >
-              <Col span={12}>
-                <TextBox>
-                  <h3>
-                    <strong>Catarina</strong>
-                  </h3>
-                  Intro to Programming
-                </TextBox>
-              </Col>
-            </Card>
-          </Row>
-        </Card>
-      </Space>
-    </>
-  );
+	console.log(courseDescription);
+
+
+
+	return (
+		<>
+			<Space direction="vertical">
+				<Card
+					type="inner"
+					hoverable
+					className="cards-border"
+					style={{ paddingTop: 10 }}
+				>
+					<Typography.Title level={4} className="left">
+						Current Courses
+						<PlusCircleTwoTone
+							style={{ paddingLeft: 420 }}
+							onClick={showModal}
+						/>
+						<Modal
+							title="Create Course"
+							visible={isModalVisible}
+							onOk={ handleOk }
+							onCancel={handleCancel}
+							width={ 1000 }
+						>
+							<form /* onSubmit={ handleSubmit } */>
+								<label>Course Name: </label>
+								<Input 
+									type="text"
+									name="courseName"
+									value={ courseName }
+									onChange={ (event) => {
+										event.preventDefault();
+										setCourseName(event.target.value); 
+									}}
+								/>
+								<br/>
+								<br/>
+								<label>Course Description: </label>
+								
+								<TextEditor 
+									text={ courseDescription }
+									setText={ setCourseDescription }
+								/>
+
+								<br/>
+								{/* <Button type="primary" htmlType="submit" >
+									Create Course
+								</Button> */}
+								{/* <input type="submit" value="Submit Form" /> */}
+							</form>
+						</Modal>
+					</Typography.Title>
+					<br></br>
+
+					<Row gutter={[16, 16]}>
+						{
+							courses && courses.map((course) => (
+								<Card
+									type="inner"
+									hoverable
+									className="cards-border"
+									style={{ margin: 3 }}
+									key={ course.id }
+								>
+									<Col span={12}>
+										<TextBox>
+											<h3>
+												<strong>{ course.course_name }</strong>
+											</h3>
+											<div dangerouslySetInnerHTML={{ __html: course.description }} ></div>
+											{/* { course.description } */}
+										</TextBox>
+									</Col>
+								</Card>		
+							))
+						}
+					</Row>
+				</Card>
+			</Space>
+		</>
+	);
 };
 export default CurrentCourses;

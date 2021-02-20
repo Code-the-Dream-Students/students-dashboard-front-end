@@ -1,18 +1,49 @@
-import React from 'react';
+/** @format */
+
+import React from "react";
 import { FileDoneOutlined } from "@ant-design/icons";
-
-import { GoalIcon } from '../../../graphics/Goal.js';
-
+import { Typography } from "antd";
+import { GoalIcon } from "../../../graphics/Goal.js";
+import { StyledDivList } from "./styles";
 const Instructions = ({ lesson }) => {
-  return (
-    <div>
-      <h1><strong>{lesson}</strong></h1>
-      <h1><FileDoneOutlined /> <strong>Instructions:</strong></h1>
-      <p><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris luctus, ipsum nec pretium placerat, leo justo accumsan lacus, et interdum.</strong></p>
-      <h1><GoalIcon /> <strong>Goals:</strong></h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet arcu quam, eu rhoncus ligula malesuada a. Sed non fringilla risus. Etiam consectetur iaculis ipsum, nec cursus erat mollis eu.</p>
-    </div>
-  )
-}
+    return (
+        <div>
+            <Typography.Title level={5}>
+                <strong>{lesson}</strong>
+            </Typography.Title>
+            <Typography.Title level={5}>
+                <FileDoneOutlined /> Instructions:
+            </Typography.Title>
+            <p>In this unit, we will learn:</p>
+            <StyledDivList>
+                <ul>
+                    <li>
+                        Basic Selectors | Common values and units | CSS layout | New
+                        CSS Features
+                    </li>
+                    <li>Debugging CSS</li>
+                    <li>Layout and positioning methods used in web design</li>
+                    <li>
+                        Responsive design theory | Media queries | Breakpoints | Page
+                        layout
+                    </li>
+                </ul>
+
+                <Typography.Title level={5}>
+                    <GoalIcon /> <strong>Goals:</strong>
+                </Typography.Title>
+                <ul>
+                    <li>Understand CSS fundamental concepts</li>
+                    <li>CSS &amp; Chrome Dev tools</li>
+                    <li>
+                        CSS design elaboration | Display modes | Float property |
+                        Positioning page content
+                    </li>
+                </ul>
+                <br />
+            </StyledDivList>
+        </div>
+    );
+};
 
 export default Instructions;

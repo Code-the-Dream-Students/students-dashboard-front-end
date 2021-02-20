@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+/** @format */
 
+import React, { useState, useEffect } from "react";
+import { StyledMain, StyledSignUp } from "./styles";
 import {
-    Button,
     Modal,
     Form,
     Input,
@@ -9,7 +10,10 @@ import {
     Cascader,
     DatePicker,
     Checkbox,
+    Card,
+    Typography,
 } from "antd";
+import { SolutionOutlined } from "@ant-design/icons";
 
 const CreateForm = ({ visible, onCreate, onCancel }) => {
     const [form] = Form.useForm();
@@ -54,7 +58,9 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
                     children: [],
                 };
                 let times_foreach_date = mentors.records.filter(
-                    (x) => x.fields.Key === key && x.fields.Dates === element.fields.Dates
+                    (x) =>
+                        x.fields.Key === key &&
+                        x.fields.Dates === element.fields.Dates
                 );
                 times_foreach_date.forEach((time) => {
                     new_date.children.push({
@@ -76,13 +82,12 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
     return (
         <Modal
             visible={visible}
-            title="Mentor Session"
+            title="Mentor Session Registration"
             okText="Submit"
             cancelText="Cancel"
             onCancel={onCancel}
             onOk={() => {
-                form
-                    .validateFields()
+                form.validateFields()
                     .then((values) => {
                         console.log(values)
                         form.resetFields();
@@ -91,16 +96,14 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
                     .catch((info) => {
                         console.log("Validate Failed:", info);
                     });
-            }}
-        >
+            }}>
             <Form
                 form={form}
                 layout="vertical"
                 name="form_in_modal"
                 initialValues={{
                     modifier: "public",
-                }}
-            >
+                }}>
                 <Form.Item label="Mentor">
                     {mentors && <Cascader options={getOptions()} />}
                 </Form.Item>
@@ -110,7 +113,9 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
 
                 <Form.Item label="Type">
                     <Select>
-                        <Select.Option value="regularsession">Mentor Session</Select.Option>
+                        <Select.Option value="regularsession">
+                            Mentor Session
+                        </Select.Option>
                         <Select.Option value="1on1">1 on 1</Select.Option>
                     </Select>
                 </Form.Item>
@@ -125,8 +130,7 @@ const CreateForm = ({ visible, onCreate, onCancel }) => {
 
                 <Form.Item
                     name="description"
-                    label="Any questions or topics would you like to discuss at the session?"
-                >
+                    label="Any questions or topics would you like to discuss at the session?">
                     <Input type="textarea" />
                 </Form.Item>
             </Form>
@@ -143,23 +147,29 @@ const MentorForm = () => {
     };
 
     return (
-        <div>
-            <Button
-                type="primary"
-                onClick={() => {
-                    setVisible(true);
-                }}
-            >
-                Here
-      </Button>
-            <CreateForm
-                visible={visible}
-                onCreate={onCreate}
-                onCancel={() => {
-                    setVisible(false);
-                }}
-            />
-        </div>
+        <StyledMain>
+            <StyledSignUp>
+                <Card
+                    type="inner"
+                    hoverable
+                    onClick={() => {
+                        setVisible(true);
+                    }}>
+                    <Typography.Title level={4} className="left">
+                        <SolutionOutlined />
+                        Mentor Session
+                    </Typography.Title>
+                    <p>Sign Up for a Mentor Session</p>
+                    <CreateForm
+                        visible={visible}
+                        onCreate={onCreate}
+                        onCancel={() => {
+                            setVisible(false);
+                        }}
+                    />
+                </Card>
+            </StyledSignUp>
+        </StyledMain>
     );
 };
 

@@ -1,9 +1,21 @@
-import React, { useState, useContext } from "react";
-import { Calendar, Badge, Space, Select, Radio, Col, Row, Typography } from "antd";
+/** @format */
 
+import React, { useState, useContext } from "react";
+import {
+    Calendar,
+    Badge,
+    Space,
+    Select,
+    Radio,
+    Col,
+    Row,
+    Typography,
+    Card,
+} from "antd";
+import CalLegends from "../../calLegends/CalLegends";
+import { StyledDiv, StyledEvents } from "./styles";
 import "../../../HomePage.css";
 import CalendarContext from "../../../../contexts/CalendarContext";
-import { StyledDiv, StyledLegend, StyledEvents } from "./styles";
 import * as ROUTES from "../../../../../constants/routes";
 
 function onPanelChange(value, mode) {
@@ -12,22 +24,10 @@ function onPanelChange(value, mode) {
 
 const SmallCalendar = ({ history }) => {
     const [selectedDate, setSelectedDate] = useContext(CalendarContext);
+
     function getListData(value) {
         let listData;
         switch (value.date()) {
-            case 8:
-                listData = [
-                    { type: "warning", content: "" },
-                    { type: "success", content: "" },
-                ];
-                break;
-            case 10:
-                listData = [{ type: "warning", content: "" }];
-                break;
-            case 15:
-                listData = [{ type: "warning", content: "" }];
-                break;
-            default:
         }
         return listData || [];
     }
@@ -60,126 +60,115 @@ const SmallCalendar = ({ history }) => {
             </div>
         ) : null;
     }
+
     function onSelect(selectedDate) {
         setSelectedDate(selectedDate);
-        history.push(`${ROUTES.STAFFHOME}${ROUTES.CALENDAR}`);
+        history.push(`${ROUTES.HOME}${ROUTES.CALENDAR}`);
     }
+    
     return (
         <>
-            <Space direction="vertical" className="center">
-                <StyledDiv className="shadow cards-border ">
-                    <Calendar
-                        fullscreen={false}
-                        dateCellRender={dateCellRender}
-                        onSelect={onSelect}
-                        monthCellRender={monthCellRender}
-                        headerRender={({ value, type, onChange, onTypeChange }) => {
-                            const start = 0;
-                            const end = 12;
-                            const monthOptions = [];
+            <StyledDiv>
+                <Space direction="vertical" className="center">
+                    <Card>
+                        <Calendar
+                            fullscreen={false}
+                            onSelect={onSelect}
+                            monthCellRender={monthCellRender}
+                            headerRender={({
+                                value,
+                                type,
+                                onChange,
+                                onTypeChange,
+                            }) => {
+                                const start = 0;
+                                const end = 12;
+                                const monthOptions = [];
 
-                            const current = value.clone();
+                                const current = value.clone();
+                                console.log(current);
+                                const localeData = value.localeData();
+                                const months = [];
+                                for (let i = 0; i < 12; i++) {
+                                    current.month(i);
+                                    months.push(localeData.monthsShort(current));
+                                }
 
-                            const localeData = value.localeData();
-                            const months = [];
-                            for (let i = 0; i < 12; i++) {
-                                current.month(i);
-                                months.push(localeData.monthsShort(current));
-                            }
+                                for (let index = start; index < end; index++) {
+                                    monthOptions.push(
+                                        <Select.Option
+                                            className="month-item"
+                                            key={`${index}`}>
+                                            {months[index]}
+                                        </Select.Option>
+                                    );
+                                }
+                                const month = value.month();
 
-                            for (let index = start; index < end; index++) {
-                                monthOptions.push(
-                                    <Select.Option
-                                        className="month-item"
-                                        key={`${index}`}>
-                                        {months[index]}
-                                    </Select.Option>
+                                const year = value.year();
+                                const options = [];
+                                for (let i = year - 10; i < year + 10; i += 1) {
+                                    options.push(
+                                        <Select.Option
+                                            key={i}
+                                            value={i}
+                                            className="year-item">
+                                            {i}
+                                        </Select.Option>
+                                    );
+                                }
+                                return (
+                                    <div>
+                                        <Row gutter={16}>
+                                            <Col>
+                                                <Select
+                                                    size="small"
+                                                    dropdownMatchSelectWidth={false}
+                                                    value={String(month)}
+                                                    onChange={(selectedMonth) => {
+                                                        const newValue = value.clone();
+                                                        newValue.month(
+                                                            parseInt(
+                                                                selectedMonth,
+                                                                10
+                                                            )
+                                                        );
+                                                        onChange(newValue);
+                                                    }}>
+                                                    {monthOptions}
+                                                </Select>
+                                            </Col>
+                                            <Col>
+                                                <Typography.Title
+                                                    level={5}
+                                                    className="center">
+                                                    Calendar
+                                                </Typography.Title>
+                                            </Col>
+                                            <Col>
+                                                <Select
+                                                    size="small"
+                                                    dropdownMatchSelectWidth={true}
+                                                    className="my-year-select"
+                                                    onChange={(newYear) => {
+                                                        const now = value
+                                                            .clone()
+                                                            .year(newYear);
+                                                        onChange(now);
+                                                    }}
+                                                    value={String(year)}>
+                                                    {options}
+                                                </Select>
+                                            </Col>
+                                        </Row>
+                                    </div>
                                 );
-                            }
-                            const month = value.month();
-
-                            const year = value.year();
-                            const options = [];
-                            for (let i = year - 10; i < year + 10; i += 1) {
-                                options.push(
-                                    <Select.Option
-                                        key={i}
-                                        value={i}
-                                        className="year-item">
-                                        {i}
-                                    </Select.Option>
-                                );
-                            }
-                            return (
-                                <div style={{ padding: 8 }}>
-                                    <Typography.Title level={4} className="center">
-                                        Calendar
-                                    </Typography.Title>
-                                    <Row gutter={8}>
-                                        <Col>
-                                            <Radio.Group
-                                                size="small"
-                                                onChange={(e) =>
-                                                    onTypeChange(e.target.value)
-                                                }
-                                                value={type}>
-                                                <Radio.Button value="month">
-                                                    Month
-                                                </Radio.Button>
-                                                <Radio.Button value="year">
-                                                    Year
-                                                </Radio.Button>
-                                            </Radio.Group>
-                                        </Col>
-                                        <Col>
-                                            <Select
-                                                size="small"
-                                                dropdownMatchSelectWidth={false}
-                                                className="my-year-select"
-                                                onChange={(newYear) => {
-                                                    const now = value
-                                                        .clone()
-                                                        .year(newYear);
-                                                    onChange(now);
-                                                }}
-                                                value={String(year)}>
-                                                {options}
-                                            </Select>
-                                        </Col>
-                                        <Col>
-                                            <Select
-                                                size="small"
-                                                dropdownMatchSelectWidth={false}
-                                                value={String(month)}
-                                                onChange={(selectedMonth) => {
-                                                    const newValue = value.clone();
-                                                    newValue.month(
-                                                        parseInt(selectedMonth, 10)
-                                                    );
-                                                    onChange(newValue);
-                                                }}>
-                                                {monthOptions}
-                                            </Select>
-                                        </Col>
-                                    </Row>
-                                </div>
-                            );
-                        }}
-                        onPanelChange={onPanelChange}
-                    />
-                </StyledDiv>
-            </Space>
-            <Space direction="vertical ">
-                <StyledLegend className="cal-legend align-self-start">
-                    <Badge status="success" text="Week Start" />
-                    <br />
-                    <Badge status="error" text="Mentor Session" />
-                    <br />
-                    <Badge status="default" text="Due Day" />
-                    <br />
-                    <Badge status="processing" text="Holiday" />
-                </StyledLegend>
-            </Space>
+                            }}
+                            onPanelChange={onPanelChange}
+                        />
+                    </Card>
+                </Space>
+            </StyledDiv>
         </>
     );
 };
