@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 
 const PublicRoute = ({ component: Component, ...rest }) => {
-    const [authToken, setAuthToken] = useContext(UserContext);
+    const [authToken] = useContext(UserContext);
     console.log(authToken)
     return (
         <Route

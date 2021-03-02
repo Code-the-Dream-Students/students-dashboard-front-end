@@ -4,7 +4,7 @@ import React from "react";
 import { Row, Col } from "antd";
 import { Typography } from "antd";
 import { StyledDivList, StyledDivBadge } from "./styles";
-import Video from "../../../graphics/videos.png";
+import Video from "../../../../graphics/videos.png";
 const Resources = ({ lessons }) => {
     return (
         <StyledDivList>

@@ -4,43 +4,43 @@ import { Button, Input, Form, Card, Row, Col, Typography, Descriptions, List, Av
 import _ from 'lodash';
 import { UploadOutlined, MailOutlined, MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 import LoadPic from './LoadPic';
-import { StyledDivSummary } from '../../assignments/styles';
+import { StyledDivSummary } from './styles';
 import UserContext from '../../../contexts/UserContext';
 
 
 //MF: thinking can be static data but called from the backend
 // const [data, setData] = useState([]);
 // data = {
-  //   Id: '1',  
-  //   Name: 'Mel',
-  //   Last: 'Ferguson',
-  //   Class: 'Sunrise',
-  //   Email: 'Mel@email.com',
-  // }
+//   Id: '1',  
+//   Name: 'Mel',
+//   Last: 'Ferguson',
+//   Class: 'Sunrise',
+//   Email: 'Mel@email.com',
+// }
 
 // const base = new Airtable({apiKey: process.env.REACT_APP_USER_INFO_API_KEY}).base('appm5NPkqO7P8ePUK');
 
 const AccountOverview = () => {
-	const [data ]= useState([{
-		Id: '1',  
+	const [data] = useState([{
+		Id: '1',
 		Name: 'Mel',
 		Last: 'Ferguson',
 		Class: 'Sunrise',
 		Email: 'Mel@email.com',
 	}]);
 
-  // 
-  // for(let i=1; i<1; i++) {
-  //   listData.push({
-  //     href: 'https://ant.design',
-  //     title: `ant design part ${i}`,
-  //     // avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-  //     description:
-  //       'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-  //     content:
-  //       'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  //   });
-  // };
+	// 
+	// for(let i=1; i<1; i++) {
+	//   listData.push({
+	//     href: 'https://ant.design',
+	//     title: `ant design part ${i}`,
+	//     // avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+	//     description:
+	//       'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+	//     content:
+	//       'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+	//   });
+	// };
 
 	function IconText({ icon, text }) {
 		return (
@@ -51,30 +51,30 @@ const AccountOverview = () => {
 		);
 	}
 
-  // const [userInfo, dispatchUser] = useContext(UserContext);
-  // console.log(userInfo)
-  // const updateUser = (values)=>{
-  //   const { id, ...rest } = values;
-  //   base('User_Info_Table').update([
-  //     {
-  //       "id": id,
-  //       "fields": {
-  //         ...rest
-  //       }
-  //     }
-  //   ], function(err, records) {
-  //     if (err) {
-  //       console.error(err);
-  //       return;
-  //     }
-  //     records.forEach(function(record) {
-  //       console.log(record.get('Name'));
-  //     });
-  //   });
-  //   dispatchUser({type: "all", payload: { field: "all", value: values}});
+	// const [userInfo, dispatchUser] = useContext(UserContext);
+	// console.log(userInfo)
+	// const updateUser = (values)=>{
+	//   const { id, ...rest } = values;
+	//   base('User_Info_Table').update([
+	//     {
+	//       "id": id,
+	//       "fields": {
+	//         ...rest
+	//       }
+	//     }
+	//   ], function(err, records) {
+	//     if (err) {
+	//       console.error(err);
+	//       return;
+	//     }
+	//     records.forEach(function(record) {
+	//       console.log(record.get('Name'));
+	//     });
+	//   });
+	//   dispatchUser({type: "all", payload: { field: "all", value: values}});
 
 
-  // render() {
+	// render() {
 	// use for email input
 	// const props = {
 	//   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -90,7 +90,7 @@ const AccountOverview = () => {
 	//       span: 16,
 	//     },
 	//   };
-	
+
 	//   const validateMessages = {
 	//     required: '${label} is required!',
 	//     types: {
@@ -108,53 +108,53 @@ const AccountOverview = () => {
 	// };
 
 	//MF: to passing the props from the user context 
-//       const user = ({info}) => {
-// console.log(info)
-//   };
+	//       const user = ({info}) => {
+	// console.log(info)
+	//   };
 
 	return (
 		<Card>
 			<List
 				itemLayout="vertical"
 				size="large"
-			// pagination={{
-			//   onChange: page => {
-			//     console.log(page);
-			//   },
-			//   pageSize: 3,
-			// }}
+				// pagination={{
+				//   onChange: page => {
+				//     console.log(page);
+				//   },
+				//   pageSize: 3,
+				// }}
 				dataSource={data}
-			// footer={
-			//   <div>
-			//     <b>ant design</b> footer part
-			//   </div>
-			// }
+				// footer={
+				//   <div>
+				//     <b>ant design</b> footer part
+				//   </div>
+				// }
 				renderItem={item => (
 					<List.Item
-				// key={item.title}
+						// key={item.title}
 						extra={
-							<LoadPic />			
+							<LoadPic />
 						}
 					>
-				
+
 						<List.Item.Meta
 							title="User Info"
 							description="You can edit your name only"
-					// title={<a href={item.href}>{item.title}</a>}
-					// description={item.description}
+						// title={<a href={item.href}>{item.title}</a>}
+						// description={item.description}
 						/>
-				
+
 						<Form layout="inline">
 							<Form.Item
 								name={['user', 'name']}
 								label="LastName"
-								
-								// rules={[
-								// {
-									
-								//     required: true,
-								// },
-								// ]}
+
+							// rules={[
+							// {
+
+							//     required: true,
+							// },
+							// ]}
 							>
 								<Input />
 							</Form.Item>
@@ -165,119 +165,119 @@ const AccountOverview = () => {
 			/>
 		</Card>
 	);
-			// userInfo ?
-			// <Card>
-			//     <Typography.Title level={4}>Profile</Typography.Title>
-			//     <Row>
+	// userInfo ?
+	// <Card>
+	//     <Typography.Title level={4}>Profile</Typography.Title>
+	//     <Row>
 
-			//         <Col>
-			//         {/* <Avatar src={userInfo.hasOwnProperty(0) ? userInfo[0].Picture[0].thumbnails.large.url : null} />  */}
-			//         {/* uploads a profile picture */}
-				
-			//         </Col>
-			//         <Col>
-			//         {/* <Divider orientation="left">Default Size</Divider> */}
-					
-			//           {/* <List
-					
-			//             // dataSource={data}//airtable
-			//             renderItem={item => (
-			//               <List.Item> */}
-			//                 {/* {item.first} */}
-			//                 {/* <Typography.Text mark>[ITEM] </Typography.Text> {item}
-							
-			//               </List.Item>
-			//             )}
-			//           />
-			//           <br /> */}
-					
+	//         <Col>
+	//         {/* <Avatar src={userInfo.hasOwnProperty(0) ? userInfo[0].Picture[0].thumbnails.large.url : null} />  */}
+	//         {/* uploads a profile picture */}
 
-					
-				
-					
+	//         </Col>
+	//         <Col>
+	//         {/* <Divider orientation="left">Default Size</Divider> */}
 
-			//             <Form {...layout} name="nest-messages"  validateMessages={validateMessages}>
-			//               <Form layout="inline">
-							
-			//                 <Form.Item
-			//                     name={['user', 'name']}
-			//                     label="LastName"
-								
-			//                     // rules={[
-			//                     // {
-									
-			//                     //     required: true,
-			//                     // },
-			//                     // ]}
-			//                 >
-			//                     <Input />
-			//                 </Form.Item>
+	//           {/* <List
 
-			//                 <Form.Item
-			//                     name={['user', 'name']}
-			//                     label="FirstName"
-								
-			//                     // rules={[
-			//                     // {
-									
-			//                     //     required: true,
-			//                     // },
-			//                     // ]}
-			//                 >
-			//                     <Input />
-			//                 </Form.Item>
-			//                 </Form>
+	//             // dataSource={data}//airtable
+	//             renderItem={item => (
+	//               <List.Item> */}
+	//                 {/* {item.first} */}
+	//                 {/* <Typography.Text mark>[ITEM] </Typography.Text> {item}
 
-			//                 <Col>
-			//             <Descriptions>
-			//               <Descriptions.Item label="Class"> Sunrise </Descriptions.Item>
-			//               <Descriptions.Item label="Email"> Ant@gmail.com</Descriptions.Item>          
-			//           </Descriptions>
-			//             </Col>
+	//               </List.Item>
+	//             )}
+	//           />
+	//           <br /> */}
 
 
-			//                 <br />
-			//                 {/* <Form layout="inline" name="horzontal">
-			//                 <Form.Item
-			//                     name={['user', 'name']}
-			//                     label="Class"
-			//                     // rules={[
-			//                     // {
-			//                     //     required: true,
-			//                     // },
-			//                     // ]}
-			//                 >
-			//                     <Input />
-			//                 </Form.Item> */}
-			//                 {/* MF: tried to put icon on the outside of input */}
-			//                 {/* <MailOutlined className="site-form-item-icon" />  */}
-			//                 {/* <Form.Item
-							
-			//                     name={['user', 'email']}
-			//                     label="Email" 
-			//                     rules={[
-			//                     {
-			//                         type: 'email',
-			//                     },
-			//                     ] }
-			//                 >
-			//                     <Input prefix={<MailOutlined className="site-form-item-icon" />}/>
-			//                 </Form.Item> */}
-			//                 {/* </Form> */}
-			//             </Form>
-			//         </Col>
-			//     </Row>
-				// <StyledDivSummary>  
-				//  <Button type="primary" disabled>Cancel</Button>
-				//     <Button type="primary">Edit Profile</Button>
-				// </StyledDivSummary>     
-				
-		// </Card>
-		// : null
 
-							// };                  
 
-						// };
+
+
+	//             <Form {...layout} name="nest-messages"  validateMessages={validateMessages}>
+	//               <Form layout="inline">
+
+	//                 <Form.Item
+	//                     name={['user', 'name']}
+	//                     label="LastName"
+
+	//                     // rules={[
+	//                     // {
+
+	//                     //     required: true,
+	//                     // },
+	//                     // ]}
+	//                 >
+	//                     <Input />
+	//                 </Form.Item>
+
+	//                 <Form.Item
+	//                     name={['user', 'name']}
+	//                     label="FirstName"
+
+	//                     // rules={[
+	//                     // {
+
+	//                     //     required: true,
+	//                     // },
+	//                     // ]}
+	//                 >
+	//                     <Input />
+	//                 </Form.Item>
+	//                 </Form>
+
+	//                 <Col>
+	//             <Descriptions>
+	//               <Descriptions.Item label="Class"> Sunrise </Descriptions.Item>
+	//               <Descriptions.Item label="Email"> Ant@gmail.com</Descriptions.Item>          
+	//           </Descriptions>
+	//             </Col>
+
+
+	//                 <br />
+	//                 {/* <Form layout="inline" name="horzontal">
+	//                 <Form.Item
+	//                     name={['user', 'name']}
+	//                     label="Class"
+	//                     // rules={[
+	//                     // {
+	//                     //     required: true,
+	//                     // },
+	//                     // ]}
+	//                 >
+	//                     <Input />
+	//                 </Form.Item> */}
+	//                 {/* MF: tried to put icon on the outside of input */}
+	//                 {/* <MailOutlined className="site-form-item-icon" />  */}
+	//                 {/* <Form.Item
+
+	//                     name={['user', 'email']}
+	//                     label="Email" 
+	//                     rules={[
+	//                     {
+	//                         type: 'email',
+	//                     },
+	//                     ] }
+	//                 >
+	//                     <Input prefix={<MailOutlined className="site-form-item-icon" />}/>
+	//                 </Form.Item> */}
+	//                 {/* </Form> */}
+	//             </Form>
+	//         </Col>
+	//     </Row>
+	// <StyledDivSummary>  
+	//  <Button type="primary" disabled>Cancel</Button>
+	//     <Button type="primary">Edit Profile</Button>
+	// </StyledDivSummary>     
+
+	// </Card>
+	// : null
+
+	// };                  
+
+	// };
 };
 
 
@@ -329,24 +329,24 @@ const AccountOverview = () => {
 //                         <div className="column-one">
 //                         </div>
 //                         <Form className="column-two">
-						
+
 //                             <Form.Item label="Name">
 //                                 <Input/>
 //                             </Form.Item>
 //                          </Form>   
 //                     </div>
-					
+
 //                 </div>
 //             </div>
-				
+
 //         </div>
 //             <div>  {/*MF-buttons need flexing*/}
 //                 <button>Cancel</button>
 //                 <button>Edit Profile</button>
 //             </div>   
-		
 
-		
+
+
 //     </> 
 
 //         )

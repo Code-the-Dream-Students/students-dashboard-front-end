@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react';
-import MultiPurposeModal from '../../../dashboard/staffDashboard/multiPurposeModal/MultiPurposeModal';
-import { Input} from "antd";
+import MultiPurposeModal from '../../multiPurposeModal/MultiPurposeModal';
+import { Input } from "antd";
 import UserContext from '../../../../contexts/UserContext';
 import TextEditor from '../../../textEditor/TextEditor';
 
 
 const EditCourse = ({ course }) => {
 
-	const [ authToken ] = useContext(UserContext);
-    const [ courseName, setCourseName ] = useState(course.course_name);
-	const [ courseDescription, setCourseDescription ] = useState(course.description);
+    const [authToken] = useContext(UserContext);
+    const [courseName, setCourseName] = useState(course.course_name);
+    const [courseDescription, setCourseDescription] = useState(course.description);
 
     const handleEdit = (event) => {
         event.preventDefault();
@@ -23,40 +23,40 @@ const EditCourse = ({ course }) => {
                 "Authorization": authToken
             },
             body: JSON.stringify({
-				course_name: courseName,
-				description: courseDescription
-			})
+                course_name: courseName,
+                description: courseDescription
+            })
         })
-        .then(response => response.json())
-        .then(() => {
-            window.location.reload();
-        })
-        .catch(console.error)
+            .then(response => response.json())
+            .then(() => {
+                window.location.reload();
+            })
+            .catch(console.error)
     };
 
     return (
-        <MultiPurposeModal 
-            handleOk={ handleEdit }
+        <MultiPurposeModal
+            handleOk={handleEdit}
             addTitle="Edit Course"
             typeModal="Edit"
         >
             <label>Course Name: </label>
-            <Input 
+            <Input
                 type="text"
                 name="courseName"
-                value={ courseName }
-                onChange={ (event) => {
+                value={courseName}
+                onChange={(event) => {
                     event.preventDefault();
-                    setCourseName(event.target.value); 
+                    setCourseName(event.target.value);
                 }}
             />
-            <br/><br/>
+            <br /><br />
             <label>Course Description: </label>
-            <TextEditor 
-                text={ courseDescription }
-                setText={ setCourseDescription }
+            <TextEditor
+                text={courseDescription}
+                setText={setCourseDescription}
             />
-            <br/>
+            <br />
         </MultiPurposeModal>
     );
 };

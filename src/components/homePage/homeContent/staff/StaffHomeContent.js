@@ -9,7 +9,7 @@ import PrivateRoute from "../../../routes/PrivateRoute";
 import Dashboard from "../../dashboard/Dashboard";
 import CreateClass from "../../staff/createClass/CreateClass";
 import FullCalendarDashboard from "../../fullCalendar/FullCalendarDashboard";
-import StudentsManaging from "../../staff/staff_students_manage/StudentsManaging";
+import StudentsManaging from "../../staff/staffStudentsManagement/StudentsManaging";
 import MentorsOnStaff from "../../dashboard/staffDashboard/mentorsOnStaff/MentorsOnStaff";
 const { Content } = Layout;
 

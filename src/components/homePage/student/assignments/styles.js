@@ -1,5 +1,3 @@
-/** @format */
-
 import styled from "styled-components";
 
 export const StyledSection = styled.section`
@@ -94,7 +92,7 @@ export const StyledSectionStaff = styled.section`
     background: #f5f5f5;
     overflow: hidden;
     padding: 24px;
-    border: 1px solid red;
+    // border: 1px solid red;
     /* width: 800px; */
 
     .courseOutline {
@@ -108,7 +106,7 @@ export const StyledSectionStaff = styled.section`
 
     .card-container p {
         margin-bottom: 10px;
-        border: 1px solid blue;
+        // border: 1px solid blue;
     }
 
     .card-container > .ant-steps-item-wait,

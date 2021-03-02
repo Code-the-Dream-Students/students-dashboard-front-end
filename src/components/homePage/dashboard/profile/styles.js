@@ -15,3 +15,13 @@ export const StyledPass = styled.div`
 		margin-left: 30px; 
 	}
 `;
+
+export const StyledDivSummary = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+
+    button {
+    }
+`;

@@ -3,7 +3,7 @@
 import React from "react";
 import { FileDoneOutlined } from "@ant-design/icons";
 import { Typography } from "antd";
-import { GoalIcon } from "../../../graphics/Goal.js";
+import { GoalIcon } from "../../../../graphics/Goal";
 import { StyledDivList } from "./styles";
 const Instructions = ({ lesson }) => {
     return (

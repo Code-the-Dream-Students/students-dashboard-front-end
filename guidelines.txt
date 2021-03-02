@@ -1,0 +1,279 @@
+//For this specific project
+
+//Keeping code DRY (Don't Repeat Yourself)
+//Ex
+
+const myNumber = 10;
+
+const multiplyBy2 = (number) => {
+    return number * 2;
+};
+
+const multiplyBy3 = (number) => {
+    return number * 3;
+};
+
+const multiplyBy5 = (number) => {
+    return number * 5;
+};
+
+const getNumberMultipliedBy2 = multiplyBy2(myNumber);
+const getNumberMultipliedBy3 = multiplyBy3(myNumber);
+const getNumberMultipliedBy5 = multiplyBy5(myNumber);
+
+//Better
+
+const myNumber = 10;
+
+const multiply = (number1, number2) => number1 * number2;
+
+const getNumberMultipliedBy2 = multiplyBy2(myNumber, 2);
+const getNumberMultipliedBy3 = multiplyBy3(myNumber, 3);
+const getNumberMultipliedBy5 = multiplyBy5(myNumber, 5);
+
+
+//Indentation, opening and closing brackets in an understandable way (knowing where a statement, block, function opens and closes) are important things to keep in mind in order to make our code readable, maintainable and easy to use.  
+
+//Good:
+
+const cars = [
+    {
+        brand: "Ford",
+        model: "Fiesta",
+        year: 2010
+    },
+    {
+        brand: "Honda",
+        model: "Civic",
+        year: 2012
+    },
+    {
+        brand: "Tesla",
+        model: "X",
+        year: 2020
+    }
+];
+
+//Bad:
+
+const cars = [
+{
+    brand: "Ford",
+      model: "Fiesta",
+  year: 2010
+},
+    {
+        brand: "Honda", model: "Civic",
+        year: 2012
+    },
+        {
+            brand: "Tesla",
+            model: "X",
+            year: 2020
+        }
+    ];
+
+//When indenting the code, if we use tab, Tab Size should be 4 (spaces), or, if we are using spaces, use 4 spaces.
+
+//Good: 
+
+const cars = [
+    {
+        brand: "Ford",
+        model: "Fiesta",
+        year: 2010
+    },
+    {
+        brand: "Honda",
+        model: "Civic",
+        year: 2012
+    },
+    {
+        brand: "Tesla",
+        model: "X",
+        year: 2020
+    }
+];
+
+//Bad:
+
+const cars = [
+  {
+    brand: "Ford",
+    model: "Fiesta",
+    year: 2010
+  },
+  {
+    brand: "Honda",
+    model: "Civic",
+    year: 2012
+  },
+  {
+    brand: "Tesla",
+    model: "X",
+    year: 2020
+  }
+];
+
+
+// We use Hooks, then, we DO NOT use class based components.
+
+// Avoid using function declaration, we should use Arrow functions instead.
+
+// In order to avoid bugs, we must use let and const when declaring functions. We SHOULDN'T use var.
+
+// Functional components should be written in Pascal Case (First character is always in capital letter)
+// Ex:
+const Cars = () => {}
+const CarOwner = () => {}
+
+// Name the component after the function
+// File name must be Pascal Case if it contains a component
+
+// Variables and functions should be written in Camel Case, or all caps with low dash with some specific constants
+// Ex
+let myName = "John";
+const myPets = ["Dog", "Cat", "Chicken"];
+const ROOT = "/";
+const HOME_PAGE_ROUTE = "/home";
+
+// Attach comments to code only when necessary. A good and descriptive name is always better than a comment.
+
+// Ex:
+//Good: 
+
+let myFirstName = "John";
+
+const printFullName = (firstName, lastName) => {
+    console.log(`${firstName}` `${lastName}`)
+} 
+
+//Bad:
+
+//Fn means First Name
+let fN = "John";
+
+//pfn means Print Full Name
+const pFN = (firstName, lastName) => {
+    console.log(`${firstName}` `${lastName}`)
+}
+
+
+// Document functions that have logic that is hard to understand.
+
+/**
+ * Calculates the forecast for tomorrow. 
+ * If the forecast says the day is rainy, then ..."
+ * ...
+ * ...
+ * ...
+*/
+const getForecastAndUpdateCurrentUser = () => "This is a 100 lines of code function, very difficult to understand without documentation";
+
+
+// React Components should be, ideally (but not required), less than 100 lines of code, and no longer than 250 lines (required). If a component is long and hard to read, we can always create children components. A good way to design components is to keep them small, so that one component corresponds to one function. Ideally, a single component should render a specific bit of your page or modify a particular behavior.
+
+//A line of code should have, ideally, less than a 100 characters. If the line has more than 100 characters, we should split that line into multiple lines to make code more readable
+
+//Good: 
+
+<Menu onClick={(e) => setSelectedMenuItem(e.key)}>
+    {
+        courses.map( course => (
+            <Menu.Item key={course.i≈d} >
+                <Checkbox 
+                    checked={checkedItem[course.id]}
+                    onChange={(e) => onChange(e, course.id)}
+                >
+                    {course.course_name}
+                </Checkbox>
+            </Menu.Item>
+        ))
+    }
+</Menu>
+
+//Bad:
+
+<Menu onClick={(e) => setSelectedMenuItem(e.key)}>
+    { courses.map( course => ( 
+    <Menu.Item key={course.id} ><Checkbox checked={checkedItem[course.id]} onChange={(e) => onChange(e, course.id)} >{course.course_name}
+        </Checkbox>
+    </Menu.Item>
+        ))
+    }
+</Menu>
+
+
+// Keep all files relating to any one component in a single folder, including styling files. 
+
+// Add line breaks to separate variables, functions, blocks, to keep the code readable. This doesn't have to be all the time, only when a statement can get easily confused with another statement, making hard to know when it opens and when it closes 
+
+//Not that good
+
+let myName = "John";
+const myPets = ["Dog", "Cat", "Chicken"];
+const multiplyBy2 = (number) => {
+    return number * 2;
+};
+const getCars = () => {
+    return [ { brand: "Ford", model: "Fiesta", year: 2010 }, { brand: "Honda", model: "Civic", year: 2012 }, { brand: "Tesla", model: "X", year: 2020 }];
+}
+const multiplyBy3 = (number) => {
+    return number * 3;
+};
+const multiplyBy5 = (number) => {
+    return number * 5;
+};
+const myPets = ["Dog", "Cat", "Chicken"];
+const getNumberMultipliedBy2 = multiplyBy2(myNumber);
+const getNumberMultipliedBy3 = multiplyBy3(myNumber);
+const getNumberMultipliedBy5 = multiplyBy5(myNumber);
+const ROOT = "/";
+const HOME_PAGE_ROUTE = "/home";
+
+//Good
+
+let myName = "John";
+const myPets = ["Dog", "Cat", "Chicken"];
+
+const multiplyBy2 = (number) => {
+    return number * 2;
+};
+
+const getCars = () => {
+    return [ 
+        { 
+            brand: "Ford", 
+            model: "Fiesta", 
+            year: 2010 
+        },
+        { 
+            brand: "Honda", 
+            model: "Civic", 
+            year: 2012 
+        }, 
+        { 
+            brand: "Tesla", 
+            model: "X", 
+            year: 2020 
+        }
+    ];
+}
+
+const multiplyBy3 = (number) => {
+    return number * 3;
+};
+
+const multiplyBy5 = (number) => {
+    return number * 5;
+};
+
+const myPets = ["Dog", "Cat", "Chicken"];
+const getNumberMultipliedBy2 = multiplyBy2(myNumber);
+const getNumberMultipliedBy3 = multiplyBy3(myNumber);
+const getNumberMultipliedBy5 = multiplyBy5(myNumber);
+const ROOT = "/";
+const HOME_PAGE_ROUTE = "/home";
+
+
+//Add semicolons when closing a statement as much as you can. This make the code more readable and clean.

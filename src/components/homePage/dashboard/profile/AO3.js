@@ -17,7 +17,7 @@ import {
 import { EditOutlined } from "@ant-design/icons";
 import LoadPic from "./LoadPic";
 import UserContext from "../../../contexts/UserContext";
-import { StyledDivSummary } from "../../assignments/styles";
+import { StyledDivSummary } from "./styles";
 
 const { Text, Paragraph } = Typography;
 const color = "volcano"; {/*tooltip color*/ }
@@ -45,22 +45,22 @@ const AO2 = () => {
 			credentials: 'include',
 			headers: { 'Content-Type': 'application/json', 'Authorization': token },
 			body: JSON.stringify(values)
-		}); 
+		});
 	};
 
 	const onFinishFailed = (errorInfo) => {
 		console.log('Failed:', errorInfo);
 	};
 
-  // useEffect(()=>{
-  // console.log(userInfo.student.last_name, "happy")
+	// useEffect(()=>{
+	// console.log(userInfo.student.last_name, "happy")
 
-  // },[])
-  //     const editButton = () => {
-  //     setIsInEditMode(true);
+	// },[])
+	//     const editButton = () => {
+	//     setIsInEditMode(true);
 
-  //     console.log('change');
-  // };
+	//     console.log('change');
+	// };
 	return (
 		<>
 			<Card>

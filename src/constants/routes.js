@@ -4,6 +4,7 @@ export const ASSIGNMENTS = '/assignments';
 export const DASHBOARD = '/dashboard';
 export const HOME = '/home';
 export const INSTRUCTIONS = '/instructions';
+export const CREATE = '/create';
 export const VIDEOS = '/videos';
 export const SUBMISSION = '/submission';
 export const DONE = '/done';

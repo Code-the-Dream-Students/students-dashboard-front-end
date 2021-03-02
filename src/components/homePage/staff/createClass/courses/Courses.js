@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Table, Spin } from "antd";
-import MultiPurposeModal from '../../../dashboard/staffDashboard/multiPurposeModal/MultiPurposeModal';
+import MultiPurposeModal from '../../multiPurposeModal/MultiPurposeModal';
 import { Input } from "antd";
 import UserContext from '../../../../contexts/UserContext';
 import TextEditor from '../../../textEditor/TextEditor';
@@ -10,9 +10,9 @@ import UnitsCourse from './UnitsCourse';
 
 const Courses = ({ courses }) => {
 
-	const [ authToken ] = useContext(UserContext);
-	const [ courseName, setCourseName ] = useState("");
-	const [ courseDescription, setCourseDescription ] = useState("");
+    const [authToken] = useContext(UserContext);
+    const [courseName, setCourseName] = useState("");
+    const [courseDescription, setCourseDescription] = useState("");
 
     const columns = [
         {
@@ -56,63 +56,63 @@ const Courses = ({ courses }) => {
         return {
             key: course.id,
             name: course.course_name,
-            description: <div dangerouslySetInnerHTML={{ __html: course.description }}/>,
-            units: <UnitsCourse course={ course } />,
-            editCourse: <EditCourse course={ course } />,
-            deleteCourse: <DeleteCourse course={ course } />
+            description: <div dangerouslySetInnerHTML={{ __html: course.description }} />,
+            units: <UnitsCourse course={course} />,
+            editCourse: <EditCourse course={course} />,
+            deleteCourse: <DeleteCourse course={course} />
         }
     });
 
     const handleOk = (event) => {
-		event.preventDefault();
-		fetch(process.env.REACT_APP_GET_COURSES, {
-			method: "POST",
-			mode: "cors",
-			credentials: "include",
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": authToken
-			},
-			body: JSON.stringify({
-				course_name: courseName,
-				description: courseDescription
-			})
-		})
-		.then(response => response.json())
-		.then(() => {
-			// console.log(data);
-			window.location.reload();
-		})
-		.catch(console.error);
-	};
+        event.preventDefault();
+        fetch(process.env.REACT_APP_GET_COURSES, {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": authToken
+            },
+            body: JSON.stringify({
+                course_name: courseName,
+                description: courseDescription
+            })
+        })
+            .then(response => response.json())
+            .then(() => {
+                // console.log(data);
+                window.location.reload();
+            })
+            .catch(console.error);
+    };
 
     return (
         <>
             {
                 courses.length ? (
                     <>
-                        <MultiPurposeModal 
-                            handleOk={ handleOk }
+                        <MultiPurposeModal
+                            handleOk={handleOk}
                             addTitle="Add Course"
                         >
                             <label>Course Name: </label>
-                            <Input 
+                            <Input
                                 type="text"
                                 name="courseName"
-                                value={ courseName }
-                                onChange={ (event) => {
+                                value={courseName}
+                                onChange={(event) => {
                                     event.preventDefault();
-                                    setCourseName(event.target.value); 
+                                    setCourseName(event.target.value);
                                 }}
                             />
-                            <br/><br/>
+                            <br /><br />
                             <label>Course Description: </label>
-                            <TextEditor 
-                                text={ courseDescription }
-                                setText={ setCourseDescription }
+                            <TextEditor
+                                text={courseDescription}
+                                setText={setCourseDescription}
                             />
 
-                            <br/>
+                            <br />
                             {/* <Button type="primary" htmlType="submit" >
                                 Create Course
                             </Button> */}
@@ -126,8 +126,8 @@ const Courses = ({ courses }) => {
                     </>
 
                 ) : (
-                    <Spin />
-                )
+                        <Spin />
+                    )
             }
         </>
     );

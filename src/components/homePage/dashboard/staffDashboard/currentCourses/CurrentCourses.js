@@ -3,7 +3,7 @@ import { Card, Row, Col, Space, Input, Spin } from "antd";
 import styled from "styled-components";
 import TextEditor from '../../../textEditor/TextEditor';
 import UserContext from '../../../../contexts/UserContext';
-import MultiPurposeModal from "../multiPurposeModal/MultiPurposeModal";
+import MultiPurposeModal from "../../../staff/multiPurposeModal/MultiPurposeModal";
 
 const CurrentCourses = () => {
 
@@ -15,19 +15,19 @@ const CurrentCourses = () => {
 		text-align: center;
 	`;
 
-	const [ courses, setCourses ] = useState();
-	const [ courseName, setCourseName ] = useState("");
-	const [ courseDescription, setCourseDescription ] = useState("");
-	const [ authToken ] = useContext(UserContext);
+	const [courses, setCourses] = useState();
+	const [courseName, setCourseName] = useState("");
+	const [courseDescription, setCourseDescription] = useState("");
+	const [authToken] = useContext(UserContext);
 
 
 	useEffect(() => {
 		fetch(process.env.REACT_APP_GET_COURSES)
-		.then(response => response.json())
-		.then(setCourses)
-		.catch(console.error)
+			.then(response => response.json())
+			.then(setCourses)
+			.catch(console.error)
 	}, []);
-	
+
 	// const handleOk = () => {
 	// 	setIsModalVisible(false);
 	// };
@@ -48,12 +48,12 @@ const CurrentCourses = () => {
 				description: courseDescription
 			})
 		})
-		.then(response => response.json())
-		.then(() => {
-			// console.log(data);
-			window.location.reload();
-		})
-		.catch(console.error);
+			.then(response => response.json())
+			.then(() => {
+				// console.log(data);
+				window.location.reload();
+			})
+			.catch(console.error);
 	};
 
 	// console.log(courseDescription);
@@ -67,31 +67,31 @@ const CurrentCourses = () => {
 					className="cards-border"
 					style={{ paddingTop: 10 }}
 				>
-					<MultiPurposeModal 
+					<MultiPurposeModal
 						// title="Current Courses"
-						handleOk={ handleOk }
-						addTitle={ "Add Course" }
+						handleOk={handleOk}
+						addTitle={"Add Course"}
 					>
-							<label>Course Name: </label>
-							<Input 
-								type="text"
-								name="courseName"
-								value={ courseName }
-								onChange={ (event) => {
-									event.preventDefault();
-									setCourseName(event.target.value); 
-								}}
-							/>
-							<br/><br/>
-							<label>Course Description: </label>
-							
-							<TextEditor 
-								text={ courseDescription }
-								setText={ setCourseDescription }
-							/>
+						<label>Course Name: </label>
+						<Input
+							type="text"
+							name="courseName"
+							value={courseName}
+							onChange={(event) => {
+								event.preventDefault();
+								setCourseName(event.target.value);
+							}}
+						/>
+						<br /><br />
+						<label>Course Description: </label>
 
-							<br/>
-							{/* <Button type="primary" htmlType="submit" >
+						<TextEditor
+							text={courseDescription}
+							setText={setCourseDescription}
+						/>
+
+						<br />
+						{/* <Button type="primary" htmlType="submit" >
 								Create Course
 							</Button> */}
 					</MultiPurposeModal>
@@ -107,21 +107,21 @@ const CurrentCourses = () => {
 										hoverable
 										className="cards-border"
 										style={{ margin: 3 }}
-										key={ course.id }
+										key={course.id}
 									>
 										<Col span={12}>
 											<TextBox>
 												<h3>
-													<strong>{ course.course_name }</strong>
+													<strong>{course.course_name}</strong>
 												</h3>
 												<div dangerouslySetInnerHTML={{ __html: course.description }} ></div>
 											</TextBox>
 										</Col>
-									</Card>		
+									</Card>
 								)
-							)) : (
-								<Spin />
-							)
+								)) : (
+									<Spin />
+								)
 						}
 					</Row>
 				</Card>

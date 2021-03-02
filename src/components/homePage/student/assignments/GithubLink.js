@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { Form, Input, Button } from "antd";
 import { Typography } from "antd";
 import { StyledDivGithub } from "./styles";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../../../contexts/UserContext";
 
 const ASSIGNMENTS = [
     "instructions_progress",

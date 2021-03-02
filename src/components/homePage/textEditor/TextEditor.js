@@ -4,9 +4,9 @@ import 'react-quill/dist/quill.snow.css';
 
 const TextEditor = ({ text, setText }) => {
     return (
-        <ReactQuill 
-            value={ text }
-            onChange={ setText } 
+        <ReactQuill
+            value={text}
+            onChange={setText}
         />
     );
 };

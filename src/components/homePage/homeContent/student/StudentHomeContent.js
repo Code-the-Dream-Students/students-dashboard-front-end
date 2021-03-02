@@ -7,7 +7,7 @@ import { Layout } from "antd";
 import * as ROUTES from "../../../../constants/routes";
 import PrivateRoute from "../../../routes/PrivateRoute";
 import Dashboard from "../../dashboard/Dashboard";
-import Assignments from "../../assignments/Assignments";
+import Assignments from "../../student/assignments/Assignments";
 import FullCalendarDashboard from "../../fullCalendar/FullCalendarDashboard";
 import ProfilePage from "../../dashboard/profile/ProfilePage"
 
@@ -20,10 +20,10 @@ const StudentHomeContent = ({ keys, selectedKey, setSelectedKey, match }) => {
 				<Switch>
 					<PrivateRoute
 						path={`${match.path}${ROUTES.DASHBOARD}`}
-						component={Dashboard}
 						menuKey={{ dashboardKey: keys['Dashboard'], assignmentsKey: keys['Assignments'], calendarKey: keys['Calendar'] }}
 						selectedKey={selectedKey}
 						setSelectedKey={setSelectedKey}
+						component={Dashboard}
 					/>
 					<PrivateRoute
 						path={`${match.path}${ROUTES.ASSIGNMENTS}`}

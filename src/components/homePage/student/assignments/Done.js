@@ -3,7 +3,7 @@
 import React from "react";
 import { Row, Col } from "antd";
 import { Typography } from "antd";
-import complete from "../../../graphics/complete.png";
+import complete from "../../../../graphics/complete.png";
 
 const Done = () => {
     return (

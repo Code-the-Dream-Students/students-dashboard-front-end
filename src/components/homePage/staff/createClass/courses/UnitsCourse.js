@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import MultiPurposeModal from '../../../dashboard/staffDashboard/multiPurposeModal/MultiPurposeModal';
+import MultiPurposeModal from '../../multiPurposeModal/MultiPurposeModal';
 import { Input, Table, Button, Menu, Dropdown } from "antd";
 import { DownOutlined } from '@ant-design/icons';
 import UserContext from '../../../../contexts/UserContext';
@@ -8,7 +8,7 @@ import UserContext from '../../../../contexts/UserContext';
 
 const UnitsCourse = ({ course }) => {
 
-    const [ unitsToAdd, setUnitsToAdd ] = useState([]);
+    const [unitsToAdd, setUnitsToAdd] = useState([]);
     // const [ currentUnits, setCurrentUnits ] = useState({});
 
     useEffect(() => {
@@ -17,11 +17,11 @@ const UnitsCourse = ({ course }) => {
         course.units.forEach((unit) => units[unit.unit_name] = true);
 
         fetch(process.env.REACT_APP_GET_UNITS)
-        .then(response => response.json())
-        .then(data => {
-            setUnitsToAdd(data.units.filter((unit) => !(unit.unit_name in units)));         
-        })
-        .catch(console.error);
+            .then(response => response.json())
+            .then(data => {
+                setUnitsToAdd(data.units.filter((unit) => !(unit.unit_name in units)));
+            })
+            .catch(console.error);
     }, [course]);
 
     const menu = (
@@ -29,7 +29,7 @@ const UnitsCourse = ({ course }) => {
             {
                 unitsToAdd.map((unit) => (
                     <Menu.Item key={unit.id}>
-                        <p>{ unit.unit_name }</p>
+                        <p>{unit.unit_name}</p>
                     </Menu.Item>
                 ))
             }
@@ -65,7 +65,7 @@ const UnitsCourse = ({ course }) => {
         return {
             key: unit.id,
             name: unit.unit_name,
-            description: <div dangerouslySetInnerHTML={{ __html: unit.description }}/>,
+            description: <div dangerouslySetInnerHTML={{ __html: unit.description }} />,
             deleteUnit: <Button danger >Delete Unit</Button>
         }
     });
@@ -74,14 +74,14 @@ const UnitsCourse = ({ course }) => {
     console.log(course.units)
 
     return (
-        <MultiPurposeModal 
+        <MultiPurposeModal
             // handleOk={ (event) => handleEdit(event) }
-            addTitle={`Units of ${ course.course_name }`}
+            addTitle={`Units of ${course.course_name}`}
             typeModal="Units"
         >
             <Dropdown overlay={menu}>
                 <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                    Add Unit 
+                    Add Unit
                     <DownOutlined />
                 </a>
             </Dropdown>

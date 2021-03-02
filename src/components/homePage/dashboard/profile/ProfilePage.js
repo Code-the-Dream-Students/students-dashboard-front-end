@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import { Card, Row, Col, Space } from "antd";
 import ChangePass from "./ChangePass";
-import Students from "../../../staff/Students";
+import Students from "../../staff/staffStudentsManagement/Students";
 import AO3 from "./AO3";
 import Announcements from "../staffDashboard/announcements/Announcements";
 import EventsButton from "../studentDashboard/eventsButton/eventsButton";

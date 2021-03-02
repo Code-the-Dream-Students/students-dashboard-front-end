@@ -25,19 +25,19 @@ import {
     SmileOutlined,
 } from "@ant-design/icons";
 // import Announcements from "../dashboard/staffDashboard/announcements/Announcements";
-import * as ROUTES from "../../../constants/routes";
+import * as ROUTES from "../../../../constants/routes";
 import { StyledSection, StyledDiv, StyledDivSummary } from "./styles";
-import UserContext from "../../contexts/UserContext";
-import PrivateRoute from "../../routes/PrivateRoute";
+import UserContext from "../../../contexts/UserContext";
+import PrivateRoute from "../../../routes/PrivateRoute";
 import Instructions from "./Instructions";
 import Summary from "./Summary";
 import Videos from "./Resources";
 import GithubLink from "./GithubLink";
-import EventsButton from "../dashboard/studentDashboard/eventsButton/eventsButton";
-import MeetingButton from "../dashboard/studentDashboard/meetingButton/meetingButton";
+import EventsButton from "../../dashboard/studentDashboard/eventsButton/eventsButton";
+import MeetingButton from "../../dashboard/studentDashboard/meetingButton/meetingButton";
 import Done from "./Done";
 // import TodoList from "../dashboard/studentDashboard/todoList/TodoList";
-import SmallCalendar from "../dashboard/studentDashboard/smallCalendar/SmallCalendar";
+import SmallCalendar from "../../dashboard/studentDashboard/smallCalendar/SmallCalendar";
 const { TabPane } = Tabs;
 const { Step } = Steps;
 
@@ -237,12 +237,12 @@ const Assignments = ({ match, history }) => {
                 {
                     classInfo ? (
                         classInfo.units.map((unit, index) => (
-                                <Menu.Item key={index}>
-                                    <a target="_blank" rel="noopener noreferrer">
-                                        {unit.unit_name}
-                                    </a>
-                                </Menu.Item>
-                            )
+                            <Menu.Item key={index}>
+                                <a target="_blank" rel="noopener noreferrer">
+                                    {unit.unit_name}
+                                </a>
+                            </Menu.Item>
+                        )
                         )
                     ) : null
                 }
@@ -371,32 +371,32 @@ const Assignments = ({ match, history }) => {
                                                     {item.title}
                                                 </Link>
                                             ) : (
-                                                item.title
-                                            )
+                                                    item.title
+                                                )
                                         }
                                         icon={
                                             index !== 3 ? null : <SmileOutlined />
                                         }
                                     />
                                 ) : (
-                                    <Step
-                                        id={index}
-                                        key={item.title}
-                                        status={
-                                            stepStatus[index] === 2 ? "finish" : null
-                                        }
-                                        title={
-                                            <Link
-                                                to={item.link}
-                                                style={{ color: "inherit" }}>
-                                                {item.title}
-                                            </Link>
-                                        }
-                                        icon={
-                                            index !== 3 ? null : <SmileOutlined />
-                                        }
-                                    />
-                                )
+                                        <Step
+                                            id={index}
+                                            key={item.title}
+                                            status={
+                                                stepStatus[index] === 2 ? "finish" : null
+                                            }
+                                            title={
+                                                <Link
+                                                    to={item.link}
+                                                    style={{ color: "inherit" }}>
+                                                    {item.title}
+                                                </Link>
+                                            }
+                                            icon={
+                                                index !== 3 ? null : <SmileOutlined />
+                                            }
+                                        />
+                                    )
                             ) : null
                         }
                     </Steps>
@@ -423,7 +423,7 @@ const Assignments = ({ match, history }) => {
                                 path={`${match.path}${ROUTES.VIDEOS}`}
                                 lessons={
                                     classInfo.units[clickedUnitKey].lessons[
-                                        clickedLessonKey
+                                    clickedLessonKey
                                     ]
                                 }
                                 component={Videos}
@@ -490,14 +490,14 @@ const Assignments = ({ match, history }) => {
                                         </Button>
                                     </Link>
                                 ) : (
-                                    <Link to={steps[step + 1].link}>
-                                        <Button
-                                            type="primary"
-                                            onClick={() => nextStep()}>
-                                            Next
+                                        <Link to={steps[step + 1].link}>
+                                            <Button
+                                                type="primary"
+                                                onClick={() => nextStep()}>
+                                                Next
                                         </Button>
-                                    </Link>
-                                ))}
+                                        </Link>
+                                    ))}
                         </StyledDivSummary>
                     </div>
                 </TabPane>
@@ -533,12 +533,12 @@ const Assignments = ({ match, history }) => {
                                 </StyledSection>
                             </Card>
                         ) : (
-                            <Row>
-                                <Col span={12} offset={12}>
-                                    <Spin size="large" />
-                                </Col>
-                            </Row>
-                        )}
+                                <Row>
+                                    <Col span={12} offset={12}>
+                                        <Spin size="large" />
+                                    </Col>
+                                </Row>
+                            )}
                     </StyledDiv>
                 </Col>
                 <Col

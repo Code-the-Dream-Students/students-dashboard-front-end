@@ -20,7 +20,7 @@ export const UserStore = ({ children }) => {
 		if (!_.isEmpty(cookies)) {
 			const getData = async () => {
 				const response = await fetch('https://forked-student-dashboard.herokuapp.com/user', {
-					method: 'POST',
+					method: 'GET',
 					mode: 'cors',
 					credentials: 'include',
 					headers: { 'Content-Type': 'application/json', 'Authorization': authToken }

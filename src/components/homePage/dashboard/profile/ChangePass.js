@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Airtable from 'airtable';
-import { Card, Row, /* Col, */ Typography, Button, Form, Input,  message } from 'antd';
-import { StyledDivSummary } from "../../assignments/styles";
+import { Card, Row, /* Col, */ Typography, Button, Form, Input, message } from 'antd';
+import { StyledDivSummary } from "./styles";
 import { StyledPass } from './styles';
 import UserContext from '../../../contexts/UserContext';
 
@@ -21,30 +21,30 @@ const tailLayout = {
 	},
 };
 
-  //MF:should there be a delay to check and then a condition if successful then the message displays?
+//MF:should there be a delay to check and then a condition if successful then the message displays?
 const success = () => {
 	message.success('Your password has been changed');
 };
 
-const base = new Airtable({apiKey: process.env.REACT_APP_USER_INFO_API_KEY}).base('appm5NPkqO7P8ePUK');
+const base = new Airtable({ apiKey: process.env.REACT_APP_USER_INFO_API_KEY }).base('appm5NPkqO7P8ePUK');
 //MF: fetch call only handled in context?
-  // const [password, SetPassword]=useState();
+// const [password, SetPassword]=useState();
 
-	// fetch(process.env.REACT_APP_USER_INFO_API_KEY)
-	//   .then(response=>response.json())
-	  // .then((data)=>{
-	  //   SetPassword: [] //MF: comes from User Context?
-	  // });
-	  // SetPassword: ()
-	  // console.log(response)
+// fetch(process.env.REACT_APP_USER_INFO_API_KEY)
+//   .then(response=>response.json())
+// .then((data)=>{
+//   SetPassword: [] //MF: comes from User Context?
+// });
+// SetPassword: ()
+// console.log(response)
 
 
-  // useEffect(()=>{
-  //   checkOldPass()
-  // },[])
+// useEffect(()=>{
+//   checkOldPass()
+// },[])
 
 const ChangePass = () => {
-  // const checkOldPass =()=>{
+	// const checkOldPass =()=>{
 	// const [userInfo, dispatchUser] = useContext(UserContext);
 	const [userInfo, setUserInfo] = useContext(UserContext);
 	const updateUser = (values) => {
@@ -56,18 +56,18 @@ const ChangePass = () => {
 					...rest
 				}
 			}
-		], function(err, records) {
+		], function (err, records) {
 			if (err) {
 				console.error(err);
 				return;
 			}
-			records.forEach(function(record) {
+			records.forEach(function (record) {
 				console.log(record.get('Password'));
 			});
 		});
-	// dispatchUser({type: "all", payload: { field: "all", value: values}});
+		// dispatchUser({type: "all", payload: { field: "all", value: values}});
 	};
-//   };
+	//   };
 
 	const onFinish = (values) => {
 		console.log('Success:', values);
@@ -77,41 +77,41 @@ const ChangePass = () => {
 		console.log('Failed:', errorInfo);
 	};
 
-	useEffect(()=>{
-	// checkOldPass()
-	},[])//MF: need to clear inputs after submit
+	useEffect(() => {
+		// checkOldPass()
+	}, [])//MF: need to clear inputs after submit
 
-	return(
+	return (
 
 		<Card>
 			<Typography.Title level={4}>Change Password</Typography.Title>
 			<Row>
 				<StyledPass>
-				<Form
-					{...layout}
-					name="basic"
-					// initialValues={{
-					//     remember: true,
-					// }}
-					onFinish={onFinish}
-					onFinishFailed={onFinishFailed}
-					autocomplete="new-password"
-				>
-					<Form.Item
-						label="Old Password"
-						name="password"
-						rules={[
-							{
-								required: true,
-								message: 'Please input your current password!',
-							},
-						]}
+					<Form
+						{...layout}
+						name="basic"
+						// initialValues={{
+						//     remember: true,
+						// }}
+						onFinish={onFinish}
+						onFinishFailed={onFinishFailed}
+						autocomplete="new-password"
 					>
-						{/* <StyledPass> */}
-						<Input.Password/>
+						<Form.Item
+							label="Old Password"
+							name="password"
+							rules={[
+								{
+									required: true,
+									message: 'Please input your current password!',
+								},
+							]}
+						>
+							{/* <StyledPass> */}
+							<Input.Password />
 							{/* </StyledPass> */}
 						</Form.Item>
-						
+
 						<Form.Item
 							label="New Password"
 							name="password"
@@ -123,10 +123,10 @@ const ChangePass = () => {
 							]}
 							hasFeedback
 						>
-							<Input.Password 
-							// value={userInfo}
-							// onChange={e=> dispatchUser(e.target.value)}
-								onClick={e=> e.target.setSelectionRange(0, e.target.value.length)}//MF: may not be needed bc it is established 
+							<Input.Password
+								// value={userInfo}
+								// onChange={e=> dispatchUser(e.target.value)}
+								onClick={e => e.target.setSelectionRange(0, e.target.value.length)}//MF: may not be needed bc it is established 
 							/>
 						</Form.Item>
 
@@ -142,11 +142,11 @@ const ChangePass = () => {
 								},
 								({ getFieldValue }) => ({
 									validator(rule, value) {
-									if (!value || getFieldValue('password') === value) {
-										return Promise.resolve();
-									}
+										if (!value || getFieldValue('password') === value) {
+											return Promise.resolve();
+										}
 
-									return Promise.reject('The two passwords that you entered do not match!');
+										return Promise.reject('The two passwords that you entered do not match!');
 									},
 								}),
 							]}
@@ -156,10 +156,10 @@ const ChangePass = () => {
 					</Form>
 				</StyledPass>
 			</Row>
-			<StyledDivSummary>  
-			<Button type="primary" disabled>Cancel</Button>
-			<Button type="primary" htmlType="submit" onClick={success}>Change Password</Button>
-			</StyledDivSummary>     
+			<StyledDivSummary>
+				<Button type="primary" disabled>Cancel</Button>
+				<Button type="primary" htmlType="submit" onClick={success}>Change Password</Button>
+			</StyledDivSummary>
 		</Card>
 	)
 };

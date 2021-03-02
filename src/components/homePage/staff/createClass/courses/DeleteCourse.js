@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import MultiPurposeModal from '../../../dashboard/staffDashboard/multiPurposeModal/MultiPurposeModal';
+import MultiPurposeModal from '../../multiPurposeModal/MultiPurposeModal';
 import UserContext from '../../../../contexts/UserContext';
 
 const DeleteCourse = ({ course }) => {
 
-	const [ authToken ] = useContext(UserContext);
+    const [authToken] = useContext(UserContext);
 
     const handleDelete = (event) => {
         event.preventDefault();
@@ -18,20 +18,20 @@ const DeleteCourse = ({ course }) => {
                 "Authorization": authToken
             }
         })
-        .then(response => response.json())
-        .then(() => {
-            window.location.reload();
-        })
-        .catch(console.error)
+            .then(response => response.json())
+            .then(() => {
+                window.location.reload();
+            })
+            .catch(console.error)
     };
 
     return (
-        <MultiPurposeModal 
-            handleOk={ handleDelete }
+        <MultiPurposeModal
+            handleOk={handleDelete}
             addTitle="Delete Course"
             typeModal="Delete"
         >
-            { `Are you sure you want to delete "${course.course_name}"?` }
+            { `Are you sure you want to delete "${course.course_name}"?`}
         </MultiPurposeModal>
     );
 };

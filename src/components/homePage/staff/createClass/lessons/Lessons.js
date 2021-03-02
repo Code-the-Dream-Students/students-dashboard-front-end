@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { Table, Spin } from "antd";
-import MultiPurposeModal from '../../dashboard/staffDashboard/multiPurposeModal/MultiPurposeModal';
+import MultiPurposeModal from '../../multiPurposeModal/MultiPurposeModal';
 import { Input } from "antd";
-import UserContext from '../../../contexts/UserContext';
+import UserContext from '../../../../contexts/UserContext';
 
 
 const Lessons = ({ lessons }) => {
 
-	const [ authToken ] = useContext(UserContext);
-    const [ lessonName, setLessonName ] = useState("");
-	// const [ unitDescription, setUnitDescription ] = useState("");
+    const [authToken] = useContext(UserContext);
+    const [lessonName, setLessonName] = useState("");
+    // const [ unitDescription, setUnitDescription ] = useState("");
 
     const columns = [
         {
@@ -29,26 +29,26 @@ const Lessons = ({ lessons }) => {
     });
 
     const handleOk = (event) => {
-		event.preventDefault();
-		fetch(process.env.REACT_APP_GET_LESSONS, {
-			method: "POST",
-			mode: "cors",
-			credentials: "include",
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": authToken
-			},
-			body: JSON.stringify({
-				lesson_name: lessonName,
-			})
-		})
-		.then(response => response.json())
-		.then(() => {
-			// console.log(data);
-			window.location.reload();
-		})
-		.catch(console.error);
-	};
+        event.preventDefault();
+        fetch(process.env.REACT_APP_GET_LESSONS, {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": authToken
+            },
+            body: JSON.stringify({
+                lesson_name: lessonName,
+            })
+        })
+            .then(response => response.json())
+            .then(() => {
+                // console.log(data);
+                window.location.reload();
+            })
+            .catch(console.error);
+    };
 
     console.log(lessons);
 
@@ -57,21 +57,21 @@ const Lessons = ({ lessons }) => {
             {
                 lessons.length ? (
                     <>
-                        <MultiPurposeModal 
-                            handleOk={ handleOk }
+                        <MultiPurposeModal
+                            handleOk={handleOk}
                             addTitle="Add Lesson"
                         >
                             <label>Lesson Name: </label>
-                            <Input 
+                            <Input
                                 type="text"
                                 name="courseName"
-                                value={ lessonName }
-                                onChange={ (event) => {
+                                value={lessonName}
+                                onChange={(event) => {
                                     event.preventDefault();
-                                    setLessonName(event.target.value); 
+                                    setLessonName(event.target.value);
                                 }}
                             />
-                            <br/><br/>
+                            <br /><br />
                         </MultiPurposeModal>
 
                         <Table
@@ -82,8 +82,8 @@ const Lessons = ({ lessons }) => {
                         />
                     </>
                 ) : (
-                    <Spin />
-                )
+                        <Spin />
+                    )
             }
         </>
     );
