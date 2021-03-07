@@ -88,7 +88,7 @@ const StudentsTable = () => {
 	}, [studentAdded, changedStudentInfo])
 
 	const getStudents = () => {
-		fetch('https://forked-student-dashboard.herokuapp.com/students', {
+		fetch(`${process.env.REACT_APP_GET_STUDENTS}`, {
 			method: 'GET',
 			mode: 'cors',
 			credentials: 'include',
@@ -106,7 +106,7 @@ const StudentsTable = () => {
 	}
 
 	const getCourses = () => {
-		fetch('https://forked-student-dashboard.herokuapp.com/courses', {
+		fetch(`${process.env.REACT_APP_GET_COURSES}`, {
 			method: 'GET',
 			mode: 'cors',
 			credentials: 'include',

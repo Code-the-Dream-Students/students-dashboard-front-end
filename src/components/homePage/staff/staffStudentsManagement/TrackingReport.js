@@ -20,7 +20,7 @@ const TrackingReport = () => {
     // };
 
     useEffect(() => {
-        fetch("https://forked-student-dashboard.herokuapp.com/students")
+        fetch(`${process.env.REACT_APP_GET_STUDENTS}`)
         .then((response) => response.json())
         .then((data) => {
             // console.log(data);

@@ -178,7 +178,7 @@ const CreateActions = ({ students, selectedStudents, courses, setChangedStudentI
     var email = studentInfo.email;
     console.log(email);
 
-    fetch(`https://forked-student-dashboard.herokuapp.com/students/staff_update`, {
+    fetch(`${process.env.REACT_APP_API_ROOT}/students/staff_update`, {
       method: 'PUT',
       mode: 'cors',
       credentials: 'include',
@@ -215,7 +215,7 @@ const CreateActions = ({ students, selectedStudents, courses, setChangedStudentI
   const handleMoveOk = () => {
     setIsMoveVisible(false);
     console.log(selectedMenuItem)
-    fetch(`https://forked-student-dashboard.herokuapp.com/student_courses/${studentInfo.id}/update`, {
+    fetch(`${process.env.REACT_APP_API_ROOT}/student_courses/${studentInfo.id}/update`, {
       method: 'PATCH',
       mode: 'cors',
       credentials: 'include',
@@ -253,7 +253,7 @@ const CreateActions = ({ students, selectedStudents, courses, setChangedStudentI
     setIsDeleteVisible(false);
     setIsMoveVisible(false);
     console.log(studentInfo.course_id)
-    fetch(`https://forked-student-dashboard.herokuapp.com/student_courses/${studentInfo.id}/delete`, {
+    fetch(`${process.env.REACT_APP_API_ROOT}/student_courses/${studentInfo.id}/delete`, {
       method: 'DELETE',
       mode: 'cors',
       credentials: 'include',

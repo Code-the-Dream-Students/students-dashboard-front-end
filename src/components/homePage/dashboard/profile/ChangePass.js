@@ -95,7 +95,7 @@ const ChangePass = () => {
 						// }}
 						onFinish={onFinish}
 						onFinishFailed={onFinishFailed}
-						autocomplete="new-password"
+						autoComplete="new-password"
 					>
 						<Form.Item
 							label="Old Password"

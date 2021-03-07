@@ -39,9 +39,7 @@ const Login = ({ history }) => {
 
     async function fetchData(values) {
         try {
-            const response = await fetch(
-                "https://forked-student-dashboard.herokuapp.com/auth/login",
-                {
+            const response = await fetch(`${process.env.REACT_APP_LOGIN}`, {
                     method: "POST",
                     mode: "cors",
                     credentials: "include",

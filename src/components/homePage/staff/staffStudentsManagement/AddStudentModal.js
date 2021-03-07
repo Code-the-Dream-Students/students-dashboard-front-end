@@ -57,7 +57,7 @@ const ModalStudent = ({courses, setStudentAdded}) => {
         e.preventDefault()
         setIsModalVisible(false);
         
-        fetch('https://forked-student-dashboard.herokuapp.com/student_courses/create_student_and_course', {
+        fetch(`${process.env.REACT_APP_API_ROOT}/student_courses/create_student_and_course`, {
             method: 'POST',
             mode: 'cors',
             credentials: 'include',

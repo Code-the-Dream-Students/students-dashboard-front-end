@@ -39,9 +39,7 @@ const FullCalendarDashboard = ({ menuKey, setSelectedKey }) => {
     }, [userInfo]);
 
     const getMentorEventData = async () => {
-        const data = await fetch(
-            `https://forked-student-dashboard.herokuapp.com/mentor_courses/${userInfo.student.student_weekly_progresses[0].week.course_id}`
-        );
+        const data = await fetch(`${process.env.REACT_APP_API_ROOT}/mentor_courses/${userInfo.student.student_weekly_progresses[0].week.course_id}`);
         const mentorsInfo = await data.json();
         const sessions = mentorsInfo.reduce((acc, cur) => {
             const day = [

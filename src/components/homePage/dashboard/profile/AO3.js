@@ -39,7 +39,7 @@ const AO2 = () => {
 		})
 
 		//Response and catch still missing
-		const response = await fetch('https://forked-student-dashboard.herokuapp.com/students', {
+		const response = await fetch(`${process.env.REACT_APP_GET_STUDENTS}`, {
 			method: 'PUT',
 			mode: 'cors',
 			credentials: 'include',

@@ -11,6 +11,7 @@ import CreateClass from "../../staff/createClass/CreateClass";
 import FullCalendarDashboard from "../../fullCalendar/FullCalendarDashboard";
 import StudentsManaging from "../../staff/staffStudentsManagement/StudentsManaging";
 import MentorsOnStaff from "../../dashboard/staffDashboard/mentorsOnStaff/MentorsOnStaff";
+import ProfilePage from "../../dashboard/profile/ProfilePage";
 const { Content } = Layout;
 
 const StaffHomeContent = ({ keys, selectedKey, setSelectedKey, match }) => {
@@ -63,6 +64,10 @@ const StaffHomeContent = ({ keys, selectedKey, setSelectedKey, match }) => {
 						selectedKey={selectedKey}
 						setSelectedKey={setSelectedKey}
 						component={MentorsOnStaff}
+					/>
+					<PrivateRoute
+						path={`${match.path}${ROUTES.PROFILE}`}
+						component={ProfilePage}
 					/>
 				</Switch>
 			</div>

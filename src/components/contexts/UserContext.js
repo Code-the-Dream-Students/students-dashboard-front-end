@@ -18,20 +18,26 @@ export const UserStore = ({ children }) => {
 
 	useEffect(() => {
 		if (!_.isEmpty(cookies)) {
-			const getData = async () => {
-				const response = await fetch('https://forked-student-dashboard.herokuapp.com/user', {
-					method: 'GET',
-					mode: 'cors',
-					credentials: 'include',
-					headers: { 'Content-Type': 'application/json', 'Authorization': authToken }
-				});
-				const data = await response.json();
-
-				setUserInfo(data);
-			};
-			getData();
+			try {
+				const getData = async () => {
+					const response = await fetch(`${process.env.REACT_APP_CURRENT_USER}`, {
+						method: 'GET',
+						mode: 'cors',
+						credentials: 'include',
+						headers: { 'Content-Type': 'application/json', 'Authorization': authToken }
+					});
+					const data = await response.json();
+	
+					setUserInfo(data);
+				};
+				getData();
+			} catch (err) {
+				console.error();
+			}
 		}
 	}, [authToken]);
+
+	console.log(userInfo)
 
 	return (
 		<Context.Provider
