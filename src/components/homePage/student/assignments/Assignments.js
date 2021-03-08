@@ -136,7 +136,7 @@ const Assignments = ({ match, history }) => {
 
     useEffect(() => {
         const getAssignments = async () => {
-            const dataUnits = await fetch(`${process.env.REACT_APP_GET_COURSES}/${userInfo.student.student_course.course.id}`);
+            const dataUnits = await fetch(`${process.env.REACT_APP_API_ROOT}/courses/${userInfo.student.student_course.course.id}`);
             const resUnits = await dataUnits.json();
             console.log(resUnits);
             dispatchClass({
@@ -207,7 +207,7 @@ const Assignments = ({ match, history }) => {
     const getProgressData = async () => {
         const id = userInfo.student.student_id;
         const response = await fetch(
-            `${process.env.REACT_APP_GET_PROGRESS}/${id}/student_tracking`
+            `${process.env.REACT_APP_API_ROOT}/student_weekly_progress/${id}/student_tracking`
         );
         const data = await response.json();
         const units = data.units;

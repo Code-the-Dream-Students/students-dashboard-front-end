@@ -14,7 +14,7 @@ const EditCourse = ({ course }) => {
     const handleEdit = (event) => {
         event.preventDefault();
 
-        fetch(`${process.env.REACT_APP_GET_COURSES}/${course.id}`, {
+        fetch(`${process.env.REACT_APP_API_ROOT}/courses/${course.id}`, {
             method: "PUT",
             mode: "cors",
             credentials: "include",

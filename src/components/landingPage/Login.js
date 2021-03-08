@@ -39,18 +39,17 @@ const Login = ({ history }) => {
 
     async function fetchData(values) {
         try {
-            const response = await fetch(`${process.env.REACT_APP_LOGIN}`, {
-                    method: "POST",
-                    mode: "cors",
-                    credentials: "include",
-                    body: JSON.stringify(values),
-                    headers: { "Content-Type": "application/json" },
-                }
-            );
+            const response = await fetch(`${process.env.REACT_APP_API_ROOT}/users/sign_in`, {
+							method: "POST",
+							mode: "cors",
+							credentials: "include",
+							body: JSON.stringify(values),
+							headers: { "Content-Type": "application/json" },
+						});
             const message = await response.json();
             const token = response.headers.get("authorization");
 
-            return { info: { ...message }, token };
+					return { info: { ...message }, token };
         } catch (e) {
             console.log(e.message);
         }

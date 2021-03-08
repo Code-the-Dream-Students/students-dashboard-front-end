@@ -16,7 +16,7 @@ const UnitsCourse = ({ course }) => {
         const units = {};
         course.units.forEach((unit) => units[unit.unit_name] = true);
 
-        fetch(process.env.REACT_APP_GET_UNITS)
+        fetch(`${process.env.REACT_APP_API_ROOT}/units`)
             .then(response => response.json())
             .then(data => {
                 setUnitsToAdd(data.units.filter((unit) => !(unit.unit_name in units)));

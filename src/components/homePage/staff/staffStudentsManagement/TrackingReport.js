@@ -20,7 +20,7 @@ const TrackingReport = () => {
     // };
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_GET_STUDENTS}`)
+        fetch(`${process.env.REACT_APP_API_ROOT}/students`)
         .then((response) => response.json())
         .then((data) => {
             // console.log(data);

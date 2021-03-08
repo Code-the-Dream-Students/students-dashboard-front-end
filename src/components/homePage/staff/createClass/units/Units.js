@@ -38,7 +38,7 @@ const Units = ({ units }) => {
 
   const handleOk = (event) => {
     event.preventDefault();
-    fetch(process.env.REACT_APP_GET_UNITS, {
+    fetch(`${process.env.REACT_APP_API_ROOT}/units`, {
       method: "POST",
       mode: "cors",
       credentials: "include",

@@ -99,7 +99,7 @@ const CreateAssignments = ({ match, history }) => {
 
 	useEffect(() => {
 		const getData = async () => {
-			const res = await fetch(process.env.REACT_APP_GET_COURSES);
+			const res = await fetch(`${process.env.REACT_APP_API_ROOT}/courses`);
 			const data = await res.json();
 			setInfo(data);
 		}

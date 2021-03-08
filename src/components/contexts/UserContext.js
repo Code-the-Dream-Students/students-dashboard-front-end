@@ -20,7 +20,7 @@ export const UserStore = ({ children }) => {
 		if (!_.isEmpty(cookies)) {
 			try {
 				const getData = async () => {
-					const response = await fetch(`${process.env.REACT_APP_CURRENT_USER}`, {
+					const response = await fetch(`${process.env.REACT_APP_API_ROOT}/user`, {
 						method: 'GET',
 						mode: 'cors',
 						credentials: 'include',

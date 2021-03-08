@@ -48,7 +48,7 @@ const CreateClass = ({ match, history }) => {
 	useEffect(() => {
 		let unmounted = false;
 
-		fetch(process.env.REACT_APP_GET_COURSES)
+		fetch(`${process.env.REACT_APP_API_ROOT}/courses`)
 			.then(response => response.json())
 			.then(data => {
 				if (!unmounted) {

@@ -30,7 +30,7 @@ const Lessons = ({ lessons }) => {
 
     const handleOk = (event) => {
         event.preventDefault();
-        fetch(process.env.REACT_APP_GET_LESSONS, {
+        fetch(`${process.env.REACT_APP_API_ROOT}/lessons`, {
             method: "POST",
             mode: "cors",
             credentials: "include",

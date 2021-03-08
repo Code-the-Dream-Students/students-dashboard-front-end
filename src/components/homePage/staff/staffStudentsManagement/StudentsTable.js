@@ -88,7 +88,7 @@ const StudentsTable = () => {
 	}, [studentAdded, changedStudentInfo])
 
 	const getStudents = () => {
-		fetch(`${process.env.REACT_APP_GET_STUDENTS}`, {
+		fetch(`${process.env.REACT_APP_API_ROOT}/students`, {
 			method: 'GET',
 			mode: 'cors',
 			credentials: 'include',
@@ -106,7 +106,7 @@ const StudentsTable = () => {
 	}
 
 	const getCourses = () => {
-		fetch(`${process.env.REACT_APP_GET_COURSES}`, {
+		fetch(`${process.env.REACT_APP_API_ROOT}/courses`, {
 			method: 'GET',
 			mode: 'cors',
 			credentials: 'include',

@@ -9,7 +9,7 @@ const DeleteCourse = ({ course }) => {
     const handleDelete = (event) => {
         event.preventDefault();
 
-        fetch(`${process.env.REACT_APP_GET_COURSES}/${course.id}`, {
+        fetch(`${process.env.REACT_APP_API_ROOT}/${course.id}`, {
             method: "DELETE",
             mode: "cors",
             credentials: "include",

@@ -37,7 +37,7 @@ const Resources = ({ resources }) => {
 
     const handleOk = (event) => {
         event.preventDefault();
-        fetch(process.env.REACT_APP_GET_RESOURCES, {
+        fetch(`${process.env.REACT_APP_API_ROOT}/sources`, {
             method: "POST",
             mode: "cors",
             credentials: "include",
