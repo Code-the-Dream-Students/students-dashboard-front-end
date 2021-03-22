@@ -130,7 +130,7 @@ const CreateModal = ({ assignments, setAssignmentAdded, history }) => {
         okText="Add"
         cancelText="Cancel"
       >
-        <CreateAssignments history={history} />
+        <CreateAssignments />
       </Modal>
     </>
   )

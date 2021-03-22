@@ -65,7 +65,7 @@ const SmallCalendar = ({ history }) => {
         setSelectedDate(selectedDate);
         history.push(`${ROUTES.HOME}${ROUTES.CALENDAR}`);
     }
-    
+
     return (
         <>
             <StyledDiv>
@@ -86,7 +86,6 @@ const SmallCalendar = ({ history }) => {
                                 const monthOptions = [];
 
                                 const current = value.clone();
-                                console.log(current);
                                 const localeData = value.localeData();
                                 const months = [];
                                 for (let i = 0; i < 12; i++) {

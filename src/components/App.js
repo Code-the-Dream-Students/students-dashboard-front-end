@@ -9,6 +9,7 @@ import * as ROUTES from '../constants/routes';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 import LandingPage from './landingPage/LandingPage';
+import GithubAuth from './landingPage/GithubAuth';
 import HomePage from './homePage/HomePage';
 import GlobalStyles from '../styles/Global';
 import 'antd/dist/antd.css';
@@ -23,6 +24,7 @@ const App = () => {
 						<GlobalStyles />
 						<Switch>
 							<PublicRoute exact path={ROUTES.LANDING} component={LandingPage} />
+							<Route exact path={`${ROUTES.GITHUB_AUTH}/:code`} component={GithubAuth} />
 							<Route path={ROUTES.HOME} exact render={() => <Redirect to={`${ROUTES.HOME}${ROUTES.DASHBOARD}`} />} />
 							<PrivateRoute path={ROUTES.HOME} component={HomePage} />
 						</Switch>

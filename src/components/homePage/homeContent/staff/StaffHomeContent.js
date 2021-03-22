@@ -20,7 +20,6 @@ const StaffHomeContent = ({ keys, selectedKey, setSelectedKey, match }) => {
 				<Switch>
 					<PrivateRoute
 						path={`${match.path}${ROUTES.DASHBOARD}`}
-						component={Dashboard}
 						// menuKey={{ dashboardKey: keys[0], assignmentsKey: keys[2], calendarKey: keys[3] }}
 						menuKey={{
 							dashboardKey: keys["Dashboard"],
@@ -29,6 +28,7 @@ const StaffHomeContent = ({ keys, selectedKey, setSelectedKey, match }) => {
 						selectedKey={selectedKey}
 						setSelectedKey={setSelectedKey}
 						match={match}
+						component={Dashboard}
 					/>
 					<PrivateRoute
 						path={`${match.path}${ROUTES.CREATE_CLASSES}`}

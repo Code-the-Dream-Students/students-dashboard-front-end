@@ -25,14 +25,14 @@ const GithubLink = ({
     clickedUnitKey,
     clickedLessonKey,
 }) => {
-    const [authToken, setAuthToken, userInfo, setUserInfo] = useContext(UserContext);
+    const [, , userInfo,] = useContext(UserContext);
 
     const onFinish = async (values) => {
         const assignment = ASSIGNMENTS[step];
         const id = userInfo.student.student_id;
         const weekNumber = progressData[clickedUnitKey][clickedLessonKey].week;
 
-        const res = await fetch(
+        await fetch(
             `${process.env.REACT_APP_API_ROOT}/student_weekly_progress/${id}/week_number/${weekNumber}`,
             {
                 body: JSON.stringify({
@@ -60,7 +60,7 @@ const GithubLink = ({
             <Typography.Title level={5}>Assignment</Typography.Title>
             <p style={{ marginBottom: "50px" }}>
                 Your assignment for this week can be found{" "}
-                <a href={lesson.assignment.link} target="_blank">
+                <a href={lesson.assignment.link} target="_blank" rel="noopener noreferrer">
                     here.
                 </a>
             </p>

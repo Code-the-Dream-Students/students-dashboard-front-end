@@ -85,7 +85,7 @@ const reducerProgress = (state, action) => {
 };
 
 const Assignments = ({ match, history }) => {
-    const [state, setState] = useState({ key: "Week 1" });
+    const [state,] = useState({ key: "Week 1" });
     const [disabledState, setDisabledState] = useState(true);
     const { key } = state;
     const [clickedUnitKey, setClickedUnitKey] = useState(0);
@@ -99,7 +99,7 @@ const Assignments = ({ match, history }) => {
         reducerProgress,
         INITIAL_STATE
     );
-    const [authToken, setAuthToken, userInfo, setUserInfo] = useContext(UserContext);
+    const [, , userInfo,] = useContext(UserContext);
 
     console.log(userInfo);
 
@@ -324,7 +324,7 @@ const Assignments = ({ match, history }) => {
         //     method: "PATCH",
         // });
 
-        const res = await fetch(
+        await fetch(
             `${process.env.REACT_APP_API_ROOT}/student_weekly_progress/${id}/week_number/${weekNumber}`,
             {
                 body: JSON.stringify({

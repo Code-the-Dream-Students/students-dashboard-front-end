@@ -5,7 +5,7 @@ import UserContext from "../contexts/UserContext";
 
 const PublicRoute = ({ component: Component, ...rest }) => {
     const [authToken] = useContext(UserContext);
-    console.log(authToken)
+
     return (
         <Route
             {...rest}

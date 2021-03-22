@@ -34,11 +34,11 @@ const HomePageHeader = ({ match }) => {
 					Account
 				</Link>
 			</Menu.Item>
-			<Menu.Item>
+			{/* <Menu.Item>
 				<a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
 					Settings
 				</a>
-			</Menu.Item>
+			</Menu.Item> */}
 			<Menu.Item>
 				<Link to="#" onClick={logout}>Logout</Link>
 			</Menu.Item>
@@ -67,8 +67,8 @@ const HomePageHeader = ({ match }) => {
 					</Col>
 					<Col span={12} align="right">
 						<TopNav className="top-nav">
-							<BellOutlined />
-							<SettingOutlined />
+							{/* <BellOutlined />
+							<SettingOutlined /> */}
 							<Dropdown overlay={menu}>
 								<a className="ant-dropdown-link" trigger={['click']} onClick={e => e.preventDefault()}>
 									<UserCircle style={{ width: "25px" }} />

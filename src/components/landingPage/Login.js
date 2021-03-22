@@ -2,16 +2,16 @@
 
 import React, { useState, useContext } from "react";
 import { Button, Form, Input } from "antd";
-import { UserOutlined, LockOutlined, AlignLeftOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined, AlignLeftOutlined, GithubOutlined } from "@ant-design/icons";
 
 import * as ROUTES from "../../constants/routes";
 import ForgotPassword from "./ForgotPassword";
 import UserContext from "../contexts/UserContext";
 
 const Login = ({ history }) => {
-    const [loginState, setLoginState] = useState({ error: null, loading: null });
-    const { error, loading } = loginState;
-    const [authToken, setAuthToken] = useContext(UserContext);
+	const [loginState, setLoginState] = useState({ error: null, loading: null });
+	const { error, loading } = loginState;
+	const [authToken, setAuthToken] = useContext(UserContext);
 
 	const onFinish = async (values) => {
 		// const { email } = values;
@@ -37,36 +37,36 @@ const Login = ({ history }) => {
 		}
 	};
 
-    async function fetchData(values) {
-        try {
-            const response = await fetch(
-                "https://forked-student-dashboard.herokuapp.com/auth/login",
-                {
-                    method: "POST",
-                    mode: "cors",
-                    credentials: "include",
-                    body: JSON.stringify(values),
-                    headers: { "Content-Type": "application/json" },
-                }
-            );
-            const message = await response.json();
-            const token = response.headers.get("authorization");
+	async function fetchData(values) {
+		try {
+			const response = await fetch(
+				"https://forked-student-dashboard.herokuapp.com/users/sign_in",
+				{
+					method: "POST",
+					mode: "cors",
+					credentials: "include",
+					body: JSON.stringify(values),
+					headers: { "Content-Type": "application/json" },
+				}
+			);
+			const message = await response.json();
+			const token = response.headers.get("authorization");
 
-            return { info: { ...message }, token };
-        } catch (e) {
-            console.log(e.message);
-        }
-    }
+			return { info: { ...message }, token };
+		} catch (e) {
+			console.log(e.message);
+		}
+	}
 
-    return (
-        <div className=" col-4 contain">
-            <h1>
-                Welcome to CTD's School
+	return (
+		<div className=" col-4 contain">
+			<h1>
+				Welcome to CTD's School
                 <span className="span-txt">
-                    This website is your main hub for class materials for Code the
-                    Dream’s classes.
+					This website is your main hub for class materials for Code the
+					Dream’s classes.
                 </span>
-            </h1>
+			</h1>
 
 			<div className='form'>
 				<h2>Sign In</h2>
@@ -100,11 +100,11 @@ const Login = ({ history }) => {
 									hasFeedback
 									validateStatus={loading ? 'validating' : null}
 								>
-									<Input 
-										prefix={<UserOutlined 
-										className='site-form-item-icon' />} 
-										placeholder='email' 
-										// defaultValue="user1@gmail.com"
+									<Input
+										prefix={<UserOutlined
+											className='site-form-item-icon' />}
+										placeholder='email'
+									// defaultValue="user1@gmail.com"
 									/>
 								</Form.Item>
 								<Form.Item
@@ -118,11 +118,11 @@ const Login = ({ history }) => {
 									hasFeedback
 									validateStatus={loading ? 'validating' : null}
 								>
-									<Input 
-										prefix={<LockOutlined className='site-form-item-icon' />} 
-										type='password' 
+									<Input
+										prefix={<LockOutlined className='site-form-item-icon' />}
+										type='password'
 										placeholder='password'
-										// defaultValue="123456"
+									// defaultValue="123456"
 									/>
 								</Form.Item>
 								<Form.Item>
@@ -136,7 +136,9 @@ const Login = ({ history }) => {
 									</Button>
 								</Form.Item>
 							</Form>
-							
+							<Button className='login-github-button button-hover' id='validating' icon={<GithubOutlined />} href={`https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}`} style={{ lineHeight: '50px' }}>
+								Login with Github
+							</Button>
 							<div align="center" style={{ color: "red" }}>
 								{loginState.error ? loginState.error : null}
 							</div>

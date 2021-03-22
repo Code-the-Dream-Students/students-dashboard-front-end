@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { useHistory } from "react-router-dom";
 import _ from "lodash";
 
 const Context = React.createContext();
 
 export const UserStore = ({ children }) => {
+	let history = useHistory();
 	const [cookies, setCookie] = useCookies(['auth_token']);
 	const [authToken, setAuthToken,] = useState(cookies['auth_token']);
 	const [userInfo, setUserInfo] = useState(null);
 
 	useEffect(() => {
 		if (authToken && _.isEmpty(cookies)) {
-			setCookie('auth_token', authToken.token);
+			console.log(authToken)
+			setCookie('auth_token', authToken.token, { path: '/' });
 			setUserInfo(authToken.info);
 		}
 	}, [authToken])

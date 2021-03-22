@@ -1,4 +1,3 @@
-/** @format */
 import React, { useEffect, useContext } from "react";
 // import SignUpMentor from "./studentDashboard/signUpMentor/signUpMentor";
 // import EventsStaffButton from "./staffDashboard/eventsButton/eventsStaffButton";
@@ -60,7 +59,7 @@ const Dashboard = ({ history, menuKey, selectedKey, setSelectedKey, match }) => 
             return (
                 <>
                     {/* <Announcements /> */}
-                    <EventsButton />
+                    {/* <EventsButton /> */}
                     <MeetingButton />
                     {/* <TodoList /> */}
                     <SmallCalendar

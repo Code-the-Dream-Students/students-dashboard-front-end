@@ -13,7 +13,7 @@ import Announcements from "./announcements/Announcements";
 const Dashboard = ({ history, menuKey, selectedKey, setSelectedKey }) => {
     const { calendarKey, dashboardKey } = menuKey;
     console.log(setSelectedKey);
-    
+
     useEffect(() => {
         setSelectedKey(dashboardKey);
     }, []);
