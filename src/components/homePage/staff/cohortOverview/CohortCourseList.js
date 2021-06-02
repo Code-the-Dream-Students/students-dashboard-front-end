@@ -71,7 +71,6 @@ const CohortCourseList = () => {
       ,
       editUnit: (
         <MultiPurposeModal
-          addTitle="Edit"
           typeModal="Edit"
         >
           <label> Course Name: </label>

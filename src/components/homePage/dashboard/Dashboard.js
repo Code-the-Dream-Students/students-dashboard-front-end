@@ -1,7 +1,7 @@
 /** @format */
 import React, { useEffect, useContext } from "react";
-// import SignUpMentor from "./studentDashboard/signUpMentor/signUpMentor";
-// import EventsStaffButton from "./staffDashboard/eventsButton/eventsStaffButton";
+//import SignUpMentor from "./studentDashboard/signUpMentor/signUpMentor";
+import EventsStaffButton from "./staffDashboard/eventsButton/eventsStaffButton";
 import EventsButton from "./studentDashboard/eventsButton/eventsButton";
 import MeetingButton from "./studentDashboard/meetingButton/meetingButton";
 import { Row, Col, Space } from "antd";
@@ -13,7 +13,7 @@ import SmallCalendar from "./studentDashboard/smallCalendar/SmallCalendar";
 // import AssignmentSummary from "./studentDashboard/assignmentSummary/AssignmentSummary";
 import StaffTopLinks from "./staffDashboard/staffTopLinks/StaffTopLinks";
 import CurrentCourses from "./staffDashboard/currentCourses/CurrentCourses";
-// import Announcements from "./staffDashboard/announcements/Announcements";
+import Announcements from "./staffDashboard/announcements/Announcements";
 
 const Dashboard = ({ history, menuKey, selectedKey, setSelectedKey, match }) => {
     const [authToken, setAuthToken, userInfo, setUserInfo] = useContext(UserContext);
@@ -59,7 +59,7 @@ const Dashboard = ({ history, menuKey, selectedKey, setSelectedKey, match }) => 
         if (userInfo.role === "student") {
             return (
                 <>
-                    {/* <Announcements /> */}
+                    <Announcements />
                     <EventsButton />
                     <MeetingButton />
                     {/* <TodoList /> */}
@@ -74,8 +74,8 @@ const Dashboard = ({ history, menuKey, selectedKey, setSelectedKey, match }) => 
         } else if (userInfo.role === "staff") {
             return (
                 <>
-                    {/* <Announcements /> */}
-                    {/* <EventsStaffButton /> */}
+                    <Announcements />
+                    <EventsStaffButton />
                     <MeetingButton />
                     <SmallCalendar
                         history={history}

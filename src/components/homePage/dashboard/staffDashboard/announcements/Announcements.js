@@ -27,7 +27,7 @@ const AnnouncementsButton = styled.div`
         background: #fb5100;
         border-radius: 6px;
         width: 100%;
-        height:180px;
+        height:165px;
         text-align: center;
         display: block;
         cursor: pointer;
