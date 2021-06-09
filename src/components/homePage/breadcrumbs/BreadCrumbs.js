@@ -32,7 +32,7 @@ const Breadcrumbs = ({ page, match, keys, setSelectedKey }) => {
 				}
 				</Breadcrumb.Item>
 				<Breadcrumb.Item>
-					{page === "Dashboard" ? null : page}
+					{ page === "Dashboard" ? null : page.replace("_", " ") }
 				</Breadcrumb.Item>
 			</Breadcrumb>
 		</PageHeader>

@@ -62,7 +62,7 @@ const StaffTopLinks = ({ match }) => {
                         </Link>
                     </Col>
 
-                    {/* <Col xs={24} xl={8}>
+                    <Col xs={24} xl={8}>
                         <Link to={`${match.path}${ROUTES.ADD_MENTORS}`}>
                             <ButtonTwo>
                                 <h3>
@@ -77,15 +77,17 @@ const StaffTopLinks = ({ match }) => {
                     </Col>
 
                     <Col xs={24} xl={8}>
-                        <ButtonThree>
-                            <h3>
-                                <strong style={{ color: "#fff" }}>
-                                    <UnlockOutlined /> Staff Admin
-                                </strong>
-                            </h3>
-                            Manage & Authorization
-                        </ButtonThree>
-                    </Col> */}
+                        <Link to={`${match.path}${ROUTES.STAFF_ADMIN}`}>
+                            <ButtonThree>
+                                <h3>
+                                    <strong style={{ color: "#fff" }}>
+                                        <UnlockOutlined /> Staff Admin
+                                    </strong>
+                                </h3>
+                                Manage & Authorization
+                            </ButtonThree>
+                        </Link>
+                    </Col>
 
                 </Row>
             </Card>

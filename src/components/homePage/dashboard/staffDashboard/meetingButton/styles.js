@@ -29,7 +29,7 @@ export const StyledDiv = styled.div`
 
         }
 
-        @media only screen and (max-width: 996px) {
+        @media only screen and (max-width: 991px) {
             position: fixed;
             right: 32px;
             bottom: 60px;
@@ -47,7 +47,7 @@ export const StyledDiv = styled.div`
             }
         }
 
-        @media only screen and (max-width: 996px) {
+        @media only screen and (max-width: 991px) {
             .anticon {
                 display:flex;
                 font-size:30px;

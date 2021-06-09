@@ -18,4 +18,5 @@ export const CREATE_ANNOUNCEMENTS = '/announcements';
 export const STUDENTS = '/students';
 export const ADD_MENTORS = '/mentors';
 export const COHORT = '/cohort';
+export const STAFF_ADMIN = '/staff_admin';
 
