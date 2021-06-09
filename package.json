@@ -30,7 +30,7 @@
     "airtable": "^0.10.1",
     "antd": "^4.7.0",
     "fullcalendar": "^5.4.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "rc-calendar": "^9.15.11",
     "react": "^16.13.1",
