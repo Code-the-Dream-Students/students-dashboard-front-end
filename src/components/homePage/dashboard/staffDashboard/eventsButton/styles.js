@@ -16,6 +16,7 @@ export const StyledDiv = styled.div`
         align-items: center;
         background-color: #12284c;
         border: 1px solid #f1f1f2;
+        transition: none;
         a{
             color: #12284c;
         }
@@ -24,11 +25,7 @@ export const StyledDiv = styled.div`
             color: white;
             border: 1px solid #1890FF;
         }
-        .anticon {
-
-        }
-
-        @media only screen and (max-width: 996px) {
+        @media only screen and (max-width: 991px) {
             position: fixed;
             right: 32px;
             bottom: 150px;
@@ -40,13 +37,12 @@ export const StyledDiv = styled.div`
             padding:0px;
             text-align:center;
             box-shadow: 7px 7px 19px -12px rgba(0, 0, 0, 0.32);
-            transition: all 0.1s ease-in-out;
             span{
                 margin:0px;
             }
         }
 
-        @media only screen and (max-width: 996px) {
+        @media only screen and (max-width: 991px) {
             .anticon {
                 display:flex;
                 font-size:30px;
