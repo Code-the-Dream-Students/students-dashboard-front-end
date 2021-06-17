@@ -8,6 +8,10 @@ import CohortCourseList from "./CohortCourseList";
 import SmallCalendar from "../../dashboard/studentDashboard/smallCalendar/SmallCalendar";
 import MeetingButton from "../../dashboard/staffDashboard/eventsButton/eventsStaffButton";
 import CohortStudList from "./CohortStudentsList";
+//import MentorsTable from "../../dashboard/staffDashboard/mentorsTable/MentorsTable"
+import Announcements from "../../dashboard/staffDashboard/announcements/Announcements";
+import EventsButton from "../../dashboard/staffDashboard/eventsButton/eventsStaffButton";
+import CohortMentors from "./CohortMentors"
 
 //  StaffHomeContent -> parent component
 
@@ -52,17 +56,28 @@ console.log(courses)
               </Col>
               <Col span={1}></Col>
               <Col>
+                <Announcements />
+                <EventsButton />
                 <MeetingButton />
                 <SmallCalendar />
               </Col>
             </Row>
             <br></br>
-            <Row>
-              <Card>
-                <CohortStudList />
-              </Card>
+            <Row >
+              <Col span={23}>
+                <Card>
+                  <CohortMentors />
+                </Card>
+              </Col>
             </Row>
-          </>
+           <Row>
+             <Col span={23}>
+                <Card>
+                  <CohortStudList />
+                </Card>
+             </Col> 
+         </Row>
+         </>
         );
       }
     }

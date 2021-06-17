@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table, Row, Col, Button, Spin } from "antd";
+import MultiPurposeModal from "../../dashboard/staffDashboard/multiPurposeModal/MultiPurposeModal";
 import {
   Square,
   SquareDescription,
@@ -214,15 +215,46 @@ const CohortStudList = () => {
         }, */,
   ];
 
+  const handleOk = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       {currentStudents.length ? (
         <DivMargin>
           <Row>
-            <Col span={12}>
+            <Col span={22}>
               <h2>
                 <strong> Students</strong>
               </h2>
+            </Col>
+            <Col span={2}>
+              {" "}
+               <MultiPurposeModal handleOk={handleOk}>
+                {/* {" "}
+                <label>Course Name: </label>
+                <Input
+                  type="text"
+                  name="unitName"
+                  value={unitName}
+                  onChange={(event) => {
+                    event.preventDefault();
+                    setUnitName(event.target.value);
+                  }}
+                />
+                <br />
+                <br />
+                <label>Course Description: </label>
+                <TextEditor
+                  text={unitDescription}
+                  setText={setUnitDescription}
+                />
+                <br />
+                 <Button type="primary" htmlType="submit" >
+                                    Create Course
+                                </Button>  */}
+              </MultiPurposeModal> 
             </Col>
           </Row>
 
@@ -240,6 +272,7 @@ const CohortStudList = () => {
               <Square squareColor="#f00" style={{ marginLeft: 10 }} />
             </DivLegend>
           </ContainerLegend>
+
           <Table
             columns={columns}
             dataSource={data}
