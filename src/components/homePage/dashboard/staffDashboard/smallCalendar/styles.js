@@ -2,13 +2,12 @@
 
 import styled from "styled-components";
 
-export const StyledDiv = styled.div`
-    display: flex;
-    flex-flow: column wrap;
-    max-width: 300px;
-    font-size: 8px;
-    border: 1px solid #f0f0f0;
-    border-radius: 2px;
+export const StyledCalendar = styled.div`
+    @media only screen and (max-width: 991px) {
+        .staffCalendar {
+            display: none;
+        }
+    }
 `;
 
 export const StyledLegend = styled.div`

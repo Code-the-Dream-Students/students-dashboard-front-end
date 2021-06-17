@@ -12,6 +12,7 @@ import FullCalendarDashboard from "../../fullCalendar/FullCalendarDashboard";
 import StudentsManaging from "../../staff/staff_students_manage/StudentsManaging";
 import MentorsOnStaff from "../../dashboard/staffDashboard/mentorsOnStaff/MentorsOnStaff";
 import CohortOverview from "../../staff/cohortOverview/CohortOverview";
+import StaffAdmin from "../../staff/staffAdmin/StaffAdmin";
 const { Content } = Layout;
 
 const StaffHomeContent = ({ keys, selectedKey, setSelectedKey, match }) => {
@@ -74,6 +75,16 @@ const StaffHomeContent = ({ keys, selectedKey, setSelectedKey, match }) => {
             selectedKey={selectedKey}
             setSelectedKey={setSelectedKey}
             component={CohortOverview}
+          />
+          <PrivateRoute
+            path={`${match.path}${ROUTES.STAFF_ADMIN}`}
+            menuKey={{
+              studentsKey: keys["Students"],
+              calendarKey: keys["Calendar"],
+            }}
+            selectedKey={selectedKey}
+            setSelectedKey={setSelectedKey}
+            component={StaffAdmin}
           />
         </Switch>
       </div>

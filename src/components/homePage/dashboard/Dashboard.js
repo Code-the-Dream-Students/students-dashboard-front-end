@@ -19,10 +19,6 @@ const Dashboard = ({ history, menuKey, selectedKey, setSelectedKey, match }) => 
     const [authToken, setAuthToken, userInfo, setUserInfo] = useContext(UserContext);
     const { assignmentsKey, calendarKey, dashboardKey } = menuKey;
 
-    useEffect(() => {
-        setSelectedKey(dashboardKey);
-    }, []);
-
     const displayDashboardContent = () => {
         if (userInfo.role === "student") {
             return (
