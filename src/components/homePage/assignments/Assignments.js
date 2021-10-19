@@ -117,23 +117,6 @@ const Assignments = ({ match, history }) => {
         "assignment_progress",
     ];
 
-    console.log(progressData);
-
-    // useEffect(() => {
-    //     const getAssignments = async () => {
-    //         const dataUnits = await fetch(
-    //             `${process.env.REACT_APP_GET_COURSES}${userInfo.student.student_course.course.id}`
-    //         );
-    //         const resUnits = await dataUnits.json();
-    //         console.log(resUnits);
-    //         dispatchClass({
-    //             type: "all",
-    //             payload: { field: "all", value: resUnits.course },
-    //         });
-    //     };
-    //     getAssignments();
-    // }, []);
-
     useEffect(() => {
         const getAssignments = async () => {
             const dataUnits = await fetch(
@@ -181,30 +164,7 @@ const Assignments = ({ match, history }) => {
             type: "all",
             payload: { field: "all", value: progress },
         });
-        // setStepStatus({ 0: parseInt(progress[clickedUnitKey][clickedLessonKey].Instructions), 1: parseInt(progress[clickedUnitKey][clickedLessonKey].Treehouse), 2: parseInt(progress[clickedUnitKey][clickedLessonKey].Assignment) })
-
-        // dispatchProgress({
-        //     type: "all",
-        //     payload: { field: "all", value: progress },
-        // });
     };
-
-    // const getProgressData = async () => {
-    //     const response = await fetch(
-    //         process.env.REACT_APP_AIRTABLE_LINK
-    //     );
-    //     const data = await response.json();
-    //     console.log(data)
-    //     return data.records.reduce((acc, curr) => {
-    //         switch (curr.fields.Unit) {
-    //             case 'Frontend 1':
-    //                 return { ...acc, 0: [...acc[0], { id: curr.id, ...curr.fields }] }
-    //             case 'Frontend 2':
-    //                 return { ...acc, 1: [...acc[1], { id: curr.id, ...curr.fields }] }
-    //         }
-
-    //     }, { 0: [], 1: [] })
-    // };
 
     const getProgressData = async () => {
         const id = userInfo.student.student_id;
@@ -217,14 +177,6 @@ const Assignments = ({ match, history }) => {
         return Object.keys(units).reduce((acc, curr, index) => {
             return { ...acc, [index]: units[curr] };
         }, {});
-        // return data.reduce((acc, curr) => {
-        //     switch (curr.week.unit.unit_name) {
-        //         case 'Front-End 1':
-        //             return { ...acc, 0: [...acc[0], { ...curr }] }
-        //         case 'Front-End 2':
-        //             return { ...acc, 1: [...acc[1], { ...curr }] }
-        //     }
-        // }, { 0: [], 1: [], 2: [], 3: [], 4: [], 5: [] })
     };
 
     const determineStep = (pathLocation) => {
@@ -304,26 +256,7 @@ const Assignments = ({ match, history }) => {
 
         // Store step after save progress button is clicked
         setStepStatus({ ...stepStatus, [step]: 2 });
-        // setStepStatus([...stepStaus, step]);
-
-        // const res = await fetch(process.env.REACT_APP_UPDATE_PROGRESS_COPY, {
-        //     body: JSON.stringify({
-        //         records: [
-        //             {
-        //                 id: progressData[clickedUnitKey][clickedLessonKey].id,
-        //                 fields: {
-        //                     [assignment]: '2',
-        //                 },
-        //             },
-        //         ],
-        //     }),
-        //     headers: {
-        //         Authorization: "Bearer keyclOytaXo7NHQ8M",
-        //         "Content-Type": "application/json",
-        //     },
-        //     method: "PATCH",
-        // });
-
+        
         const res = await fetch(
             `${process.env.REACT_APP_API_ROOT}/student_weekly_progress/${id}/week_number/${weekNumber}`,
             {
